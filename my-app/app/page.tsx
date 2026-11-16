@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import { useState } from "react";
-import Link from "next/link";
-import SiteHeader from "@/components/site-header";
+import TransitionLink from "@/components/transition-link";
 import { PhoneCarousel } from "@/components/ui/phone-carousel";
 import { DesktopCarousel } from "@/components/ui/desktop-carousel";
 import { BrandFolderPreview } from "@/components/ui/brand-folder-preview";
@@ -17,6 +16,7 @@ import {
   turboPaisaProject,
 } from "@/lib/phone-projects";
 import LiquidGraphicGallery from "@/components/liquid-graphic-gallery";
+import InfiniteGraphicGallery from "@/components/infinite-graphic-gallery"
 import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
 import EditorialRulerGrid from "@/components/portfolio/EditorialRulerGrid";
 import PortfolioPreloader from "@/components/portfolio/PortfolioPreloader";
@@ -111,8 +111,8 @@ const projects: ProjectItem[] = [
 function ProjectPreview({ project }: { project: ProjectItem }) {
   const { preview: kind } = project;
   if (kind === "liquid-carousel") {
-    return <LiquidGraphicGallery />;
-    // return <InfiniteGraphicGallery />;
+    // return <LiquidGraphicGallery />;
+    return <InfiniteGraphicGallery />;
   }
 
   if (kind === "turbopaisa") {
@@ -220,12 +220,10 @@ export default function Home() {
     <>
       <PortfolioPreloader onComplete={handlePreloadComplete} />
       <div
-        className={`portfolio-shell transition-opacity duration-500 ease-out ${
-          isPreloaded ? "opacity-100" : "opacity-95"
-        }`}
+        className={`portfolio-shell transition-opacity duration-500 ease-out ${isPreloaded ? "opacity-100" : "opacity-95"
+          }`}
       >
-        <SiteHeader />
-        <main className="portfolio-layout" id="top">
+          <main className="portfolio-layout" id="top">
           <aside className="intro-column">
             <section className="intro-copy" id="about">
               <h1>Making complicated things easier to use.</h1>
@@ -272,55 +270,55 @@ export default function Home() {
             <EditorialRulerGrid />
 
             <div className="project-grid">
-            {visibleProjects.map((project) => (
-              <article className="project-card" key={project.title}>
-                <div
-                  className={`project-art art-${project.preview}`}
-                  aria-hidden={
-                    project.preview === "inventory" ||
-                    project.preview === "market"
-                  }
-                >
-                  <ProjectPreview project={project} />
-                </div>
-                <h2>
-                  {project.slug ? (
-                    <Link className="project-title-link" href={`/work/${project.slug}`}>
-                      {project.title}
-                    </Link>
-                  ) : (
-                    project.title
-                  )}
-                </h2>
-                <ul className="project-tags" aria-label="Project categories">
-                  {project.tags.map((tag) => (
-                    <li key={tag} className={tag === "Online" ? "tag-online" : ""}>
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-                <div className="project-links">
-                  {project.slug && (
-                    <Link className="project-case-link" href={`/work/${project.slug}`}>
-                      View case study <span aria-hidden="true">↗</span>
-                    </Link>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      className="project-live-link"
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Live site <span aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      </main>
+              {visibleProjects.map((project) => (
+                <article className="project-card" key={project.title}>
+                  <div
+                    className={`project-art art-${project.preview}`}
+                    aria-hidden={
+                      project.preview === "inventory" ||
+                      project.preview === "market"
+                    }
+                  >
+                    <ProjectPreview project={project} />
+                  </div>
+                  <h2>
+                    {project.slug ? (
+                      <TransitionLink className="project-title-link" href={`/work/${project.slug}`}>
+                        {project.title}
+                      </TransitionLink>
+                    ) : (
+                      project.title
+                    )}
+                  </h2>
+                  <ul className="project-tags" aria-label="Project categories">
+                    {project.tags.map((tag) => (
+                      <li key={tag} className={tag === "Online" ? "tag-online" : ""}>
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="project-links">
+                    {project.slug && (
+                      <TransitionLink className="project-case-link" href={`/work/${project.slug}`}>
+                        View case study <span aria-hidden="true">↗</span>
+                      </TransitionLink>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        className="project-live-link"
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Live site <span aria-hidden="true">↗</span>
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+          </main>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import SiteHeader from "@/components/site-header";
+import PageTransition from "@/components/page-transition";
 
 export const metadata: Metadata = {
   title: "About Sunil Kumar Reddy — Product Designer & Developer",
@@ -88,9 +88,9 @@ const certifications = [
 
 export default function AboutPage() {
   return (
-    <div className="portfolio-shell about-shell">
-      <SiteHeader />
-      <main className="about-layout">
+    <PageTransition>
+      <div className="portfolio-shell about-shell">
+        <main className="about-layout">
         <aside className="about-sidebar">
           <h1>
             Hi, I&apos;m Sunil
@@ -258,11 +258,12 @@ export default function AboutPage() {
             </p>
           </section>
         </div>
-      </main>
-      <footer className="about-page-footer">
-        <span>© 2026 Sunil Kumar Reddy</span>
-        <a href="/Sunil_Kumar_Reddy.pdf" download>Download résumé ↗</a>
-      </footer>
-    </div>
+        </main>
+        <footer className="about-page-footer">
+          <span>© 2026 Sunil Kumar Reddy</span>
+          <a href="/Sunil_Kumar_Reddy.pdf" download>Download résumé ↗</a>
+        </footer>
+      </div>
+    </PageTransition>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import SiteHeader from "@/components/site-header";
+import PageTransition from "@/components/page-transition";
 import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
 
 export const metadata: Metadata = {
@@ -49,9 +49,9 @@ const CAMPAIGN_EXPERIENCES = [
 
 export default function GameCampaignsPage() {
   return (
-    <div className="portfolio-shell">
-      <SiteHeader />
-      <main className="case-study-page pb-24">
+    <PageTransition>
+      <div className="portfolio-shell">
+        <main className="case-study-page pb-24">
         <Link className="case-study-back" href="/">
           <span aria-hidden="true">←</span> All selected work
         </Link>
@@ -134,7 +134,8 @@ export default function GameCampaignsPage() {
             ))}
           </div>
         </section>
-      </main>
-    </div>
+        </main>
+      </div>
+    </PageTransition>
   );
 }

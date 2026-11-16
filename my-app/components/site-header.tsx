@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import TransitionLink from "@/components/transition-link";
 
 export default function SiteHeader() {
   const [localTime, setLocalTime] = useState("");
@@ -24,9 +24,9 @@ export default function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link className="wordmark" href="/">Sunil Kumar Reddy</Link>
+      <TransitionLink className="wordmark" href="/">Sunil Kumar Reddy</TransitionLink>
       <nav className="top-nav" aria-label="Main navigation">
-        <Link href="/about">About</Link>
+        <TransitionLink href="/about">About</TransitionLink>
         <a href="/Sunil_Kumar_Reddy.pdf" download>
           Résumé <span aria-hidden="true">↗</span>
         </a>

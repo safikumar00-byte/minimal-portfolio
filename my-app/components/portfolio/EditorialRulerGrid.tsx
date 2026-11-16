@@ -9,7 +9,7 @@ export default function EditorialRulerGrid() {
       aria-hidden="true"
     >
       {/* Top architectural coordinate line */}
-      <div className="flex items-center justify-between text-[10px] font-mono text-[#A0A3A8] pb-1.5 uppercase tracking-wider">
+      {/* <div className="flex items-center justify-between text-[10px] font-mono text-[#A0A3A8] pb-1.5 uppercase tracking-wider">
         <div className="flex items-center gap-2">
           <span className="text-[#55585D] font-semibold">GRID // 3-COL SYSTEM</span>
           <span className="text-[#D5D7DA]">/</span>
@@ -20,10 +20,10 @@ export default function EditorialRulerGrid() {
           <span className="text-[#D5D7DA]">/</span>
           <span>SCALE 1:1</span>
         </div>
-      </div>
+      </div> */}
 
       {/* 3 Column Identifiers strictly matching the 3-column grid */}
-      <div className="grid grid-cols-3 gap-6 text-[10px] font-mono text-[#A0A3A8] py-1 border-t border-[#E9EAEC]">
+      <div className="grid grid-cols-3 gap-6 text-[10px] font-mono text-[#A0A3A8] py-1 border-[#E9EAEC]">
         <div className="flex items-center justify-between pr-2">
           <div className="flex items-center gap-1.5">
             <span className="font-semibold text-[#55585D]">01</span>

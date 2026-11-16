@@ -34,12 +34,26 @@ button {
   font: inherit;
 }
 
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.route-exit) {
+  animation: 220ms cubic-bezier(0.4, 0, 1, 1) both route-transition-exit;
+}
+
+::view-transition-new(.route-enter) {
+  animation: 420ms cubic-bezier(0.22, 1, 0.36, 1) both route-transition-enter;
+}
+
 .portfolio-shell {
   width: min(1600px, calc(100% - 96px));
   margin: 0 auto;
 }
 
 .site-header {
+  width: min(1600px, calc(100% - 96px));
+  margin: 0 auto;
   height: 82px;
   display: flex;
   align-items: center;
@@ -2421,8 +2435,31 @@ a:focus-visible {
   }
 }
 
+@keyframes route-transition-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes route-transition-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 1180px) {
   .portfolio-shell {
+    width: min(100% - 64px, 1100px);
+  }
+
+  .site-header {
     width: min(100% - 64px, 1100px);
   }
 
@@ -2444,6 +2481,7 @@ a:focus-visible {
   }
 
   .site-header {
+    width: calc(100% - 40px);
     height: 68px;
   }
 
@@ -2639,6 +2677,10 @@ a:focus-visible {
     width: calc(100% - 32px);
   }
 
+  .site-header {
+    width: calc(100% - 32px);
+  }
+
   .top-nav {
     gap: 13px;
     font-size: 12px;
@@ -2730,5 +2772,12 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }

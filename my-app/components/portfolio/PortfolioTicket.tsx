@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import TransitionLink from "@/components/transition-link";
 import AdmitOneTicket, {
   TICKET_GEOMETRY,
   TICKET_LAYOUT,
@@ -111,13 +111,13 @@ export default function PortfolioTicket({
 
   if (href) {
     return (
-      <Link
+      <TransitionLink
         href={href}
         className="portfolio-ticket-anchor group block w-full outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 focus-visible:ring-offset-4 rounded-xl transition-transform duration-200"
         aria-label={`${name.replace(/\n/g, " ")} — ${presenter} (${venue})`}
       >
         {ticketElement}
-      </Link>
+      </TransitionLink>
     );
   }
 
