@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SiteHeader from "@/components/site-header";
 import { PhoneCarousel } from "@/components/ui/phone-carousel";
+import { DesktopCarousel } from "@/components/ui/desktop-carousel";
 import type { PhoneProject } from "@/lib/phone-projects";
 
 export default function ProjectCaseStudy({
@@ -8,6 +9,8 @@ export default function ProjectCaseStudy({
 }: {
   project: PhoneProject;
 }) {
+  const isDesktop = project.deviceType === "desktop";
+
   return (
     <div className="portfolio-shell">
       <SiteHeader />
@@ -16,7 +19,9 @@ export default function ProjectCaseStudy({
           <span aria-hidden="true">←</span> All selected work
         </Link>
 
-        <section className="case-study-hero">
+        <section
+          className={`case-study-hero${isDesktop ? " case-study-hero--desktop" : ""}`}
+        >
           <div className="case-study-intro">
             <p className="case-study-eyebrow">{project.platform}</p>
             <h1>{project.title}</h1>
@@ -27,7 +32,11 @@ export default function ProjectCaseStudy({
               ))}
             </ul>
           </div>
-          <PhoneCarousel images={project.images} label={project.title} />
+          {isDesktop ? (
+            <DesktopCarousel images={project.images} label={project.title} />
+          ) : (
+            <PhoneCarousel images={project.images} label={project.title} />
+          )}
         </section>
 
         <section className="case-study-overview">

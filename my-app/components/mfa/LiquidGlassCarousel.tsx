@@ -2,7 +2,7 @@
 // Free and open source (MIT). If it helped, a star means a lot: https://github.com/shivc868/madeforaward-ui
 'use client'
 
-import {useEffect, useId, useRef, useState} from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import gsap from 'gsap'
 import * as THREE from 'three'
 
@@ -15,7 +15,7 @@ import * as THREE from 'three'
 // (it grows, the others drop away, the glass clears). Entry: panels rise in,
 // the glass fades on, the panels grow to size.
 
-export type GlassItem = {src: string; title: string; aspect?: number}
+export type GlassItem = { src: string; title: string; aspect?: number }
 
 export type LiquidGlassCarouselProps = {
   items?: GlassItem[]
@@ -26,7 +26,7 @@ export type LiquidGlassCarouselProps = {
   background?: string
   /** colour of the thin ring just inside the glass edge */
   ringColor?: string
-  /** strength of that ring and its aura (the original sits on white, where it clips away; keep it low on dark) */
+  /** strength of that ring and its aura (the original sits on grey, where it clips away; keep it low on dark) */
   ring?: number
   /** chromatic dispersion at the edges, 0 = none */
   dispersion?: number
@@ -43,14 +43,14 @@ export type LiquidGlassCarouselProps = {
 const DEFAULT_ASPECT = 3 / 4
 const art = (n: string) => `/mfa/liquid-glass-carousel/${n}.webp`
 const DEFAULT_ITEMS: GlassItem[] = [
-  {title: 'Ember Studio', src: art('01')},
-  {title: 'Nocturne', src: art('02')},
-  {title: 'Atlas Living', src: art('03')},
-  {title: 'Signal', src: art('04')},
-  {title: 'Velvet', src: art('05')},
-  {title: 'The Living Space', src: art('06')},
-  {title: 'Loud', src: art('07')},
-  {title: 'Tide', src: art('08')},
+  { title: 'Ember Studio', src: art('01') },
+  { title: 'Nocturne', src: art('02') },
+  { title: 'Atlas Living', src: art('03') },
+  { title: 'Signal', src: art('04') },
+  { title: 'Velvet', src: art('05') },
+  { title: 'The Living Space', src: art('06') },
+  { title: 'Loud', src: art('07') },
+  { title: 'Tide', src: art('08') },
 ]
 
 const VERT = /* glsl */ `
@@ -65,7 +65,7 @@ varying vec2 vUv;
 uniform sampler2D uTex;
 uniform vec2 uRes;
 uniform float uSizeX, uSizeY, uAspect, uSquareRound;
-uniform float uDispersion, uGlow, uWhiteGlow, uNovaSize;
+uniform float uDispersion, uGlow, ugreyGlow, uNovaSize;
 uniform float uRing, uRingRadius, uRingWidth;
 uniform float uShimmer, uTime;
 uniform float uRimStart, uRimTangential, uRimInward;
@@ -117,7 +117,7 @@ vec3 glass(out float outA) {
   // centre glow
   float r2 = nd * nd * 0.25;
   float gs = max(uNovaSize * uGlow * 0.003, 0.004);
-  float nova = (exp(-r2 / gs) + exp(-r2 / (gs * 7.0)) * 0.18) * uWhiteGlow * (uGlow / 17.0) * 1.15;
+  float nova = (exp(-r2 / gs) + exp(-r2 / (gs * 7.0)) * 0.18) * ugreyGlow * (uGlow / 17.0) * 1.15;
   col += vec3(nova);
 
   // coloured ring + aura just inside the edge, shimmering around
@@ -146,7 +146,7 @@ void main(){
 // the uniforms the glass "amount" scales (entry fades them in, focus turns them off)
 const LENS_KEYS = ['uDispersion', 'uRing', 'uRimLine', 'uRimTangential', 'uRimInward'] as const
 
-type Engine = {closeFocus(): void; next(): void; previous(): void; destroy(): void}
+type Engine = { closeFocus(): void; next(): void; previous(): void; destroy(): void }
 
 type EngineOpts = {
   items: GlassItem[]
@@ -182,7 +182,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
 
   let renderer: THREE.WebGLRenderer
   try {
-    renderer = new THREE.WebGLRenderer({antialias: true, alpha: false, powerPreference: 'low-power'})
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'low-power' })
   } catch {
     return null
   }
@@ -191,7 +191,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
   renderer.setSize(W, H)
   renderer.setClearColor(new THREE.Color(o.background), 1)
   const canvas = renderer.domElement
-  Object.assign(canvas.style, {display: 'block', width: '100%', height: '100%', touchAction: 'pan-y', userSelect: 'none'})
+  Object.assign(canvas.style, { display: 'block', width: '100%', height: '100%', touchAction: 'pan-y', userSelect: 'none' })
   canvas.setAttribute('aria-hidden', 'true')
   host.appendChild(canvas)
 
@@ -202,7 +202,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
   const loader = new THREE.TextureLoader()
   loader.setCrossOrigin('anonymous')
   const media = items.map((it) => {
-    const m = {tex: null as THREE.Texture | null, aspect: it.aspect ?? DEFAULT_ASPECT, locked: it.aspect != null}
+    const m = { tex: null as THREE.Texture | null, aspect: it.aspect ?? DEFAULT_ASPECT, locked: it.aspect != null }
     loader.load(
       it.src,
       (tex) => {
@@ -218,7 +218,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
         if (!moved) target = current = centreOf(0)
       },
       undefined,
-      () => {},
+      () => { },
     )
     return m
   })
@@ -264,14 +264,14 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
   // a pool of 4 laps of planes so the strip can wrap either way
   const LAPS = 4
   const MID = 2
-  const pool = [] as {mesh: THREE.Mesh; mat: THREE.MeshBasicMaterial; src: number; bound: boolean}[]
+  const pool = [] as { mesh: THREE.Mesh; mat: THREE.MeshBasicMaterial; src: number; bound: boolean }[]
   for (let lap = 0; lap < LAPS; lap++)
     for (let i = 0; i < n; i++) {
-      const mat = new THREE.MeshBasicMaterial({color: 0x2a2a2e, transparent: true})
+      const mat = new THREE.MeshBasicMaterial({ color: 0x2a2a2e, transparent: true })
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 1, 1), mat)
       mesh.visible = false
       scene.add(mesh)
-      pool.push({mesh, mat, src: i, bound: false})
+      pool.push({ mesh, mat, src: i, bound: false })
     }
 
   // scene 2: the glass pane over the rendered strip
@@ -279,30 +279,30 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
   const post = new THREE.Scene()
   const postCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
   const u = {
-    uTex: {value: rt.texture},
-    uRes: {value: new THREE.Vector2(W * dpr, H * dpr)},
-    uSizeX: {value: (W / 2 - 6) / H},
-    uSizeY: {value: (H / 2 - 6) / H},
-    uSquareRound: {value: 0.06},
-    uAspect: {value: W / H},
-    uDispersion: {value: o.dispersion},
-    uGlow: {value: o.glow},
-    uWhiteGlow: {value: 0.06},
-    uNovaSize: {value: 12},
-    uRing: {value: o.ring},
-    uRingRadius: {value: 0.49},
-    uRingWidth: {value: 0.014},
-    uShimmer: {value: rm ? 0 : 1},
-    uTime: {value: 0},
-    uRimStart: {value: 0.86},
-    uRimTangential: {value: 0.7 * o.rim},
-    uRimInward: {value: 0.1 * o.rim},
-    uRingColor: {value: new THREE.Color(o.ringColor)},
-    uRimLine: {value: 0.45},
-    uRimLinePos: {value: 0.488},
-    uRimLineWidth: {value: 0.003},
+    uTex: { value: rt.texture },
+    uRes: { value: new THREE.Vector2(W * dpr, H * dpr) },
+    uSizeX: { value: (W / 2 - 6) / H },
+    uSizeY: { value: (H / 2 - 6) / H },
+    uSquareRound: { value: 0.06 },
+    uAspect: { value: W / H },
+    uDispersion: { value: o.dispersion },
+    uGlow: { value: o.glow },
+    ugreyGlow: { value: 0.06 },
+    uNovaSize: { value: 12 },
+    uRing: { value: o.ring },
+    uRingRadius: { value: 0.49 },
+    uRingWidth: { value: 0.014 },
+    uShimmer: { value: rm ? 0 : 1 },
+    uTime: { value: 0 },
+    uRimStart: { value: 0.86 },
+    uRimTangential: { value: 0.7 * o.rim },
+    uRimInward: { value: 0.1 * o.rim },
+    uRingColor: { value: new THREE.Color(o.ringColor) },
+    uRimLine: { value: 0.45 },
+    uRimLinePos: { value: 0.488 },
+    uRimLineWidth: { value: 0.003 },
   }
-  const postMat = new THREE.ShaderMaterial({uniforms: u, vertexShader: VERT, fragmentShader: FRAG, toneMapped: false})
+  const postMat = new THREE.ShaderMaterial({ uniforms: u, vertexShader: VERT, fragmentShader: FRAG, toneMapped: false })
   const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), postMat)
   post.add(quad)
   const lensBase = Object.fromEntries(LENS_KEYS.map((k) => [k, u[k].value])) as Record<(typeof LENS_KEYS)[number], number>
@@ -314,12 +314,12 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
   let velocity = 0
   let last = current
   let speed = 0 // 0..1, squashes panels while the strip moves fast
-  let pending: {src: number} | null = null // item to focus once centred
+  let pending: { src: number } | null = null // item to focus once centred
   let settledAt = performance.now()
   let snapped = false
 
   // focus (one panel open) + entry
-  const focus = {active: false, src: -1, pool: -1, lens: playEntry ? 0 : 1, anim: null as gsap.core.Timeline | null}
+  const focus = { active: false, src: -1, pool: -1, lens: playEntry ? 0 : 1, anim: null as gsap.core.Timeline | null }
   const drop = new Array<number>(pool.length).fill(0) // 0..1: how far a panel has dropped away in focus
   let focusScale = 1
   const xs = new Array<number | undefined>(pool.length)
@@ -329,9 +329,9 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
   let growing = false
   let entryAnim: gsap.core.Timeline | null = null
 
-  type Hit = {left: number; right: number; top: number; bottom: number; pool: number; src: number; cx: number}
+  type Hit = { left: number; right: number; top: number; bottom: number; pool: number; src: number; cx: number }
   let hits: Hit[] = []
-  let centre: {src: number; pool: number} | null = null
+  let centre: { src: number; pool: number } | null = null
 
   function place() {
     hits = []
@@ -410,17 +410,17 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
       p.mesh.scale.set(sw, sh, 1)
       const cx = x + W / 2
       const cy = H / 2 - y
-      hits.push({left: cx - sw / 2, right: cx + sw / 2, top: cy - h / 2, bottom: cy + h / 2, pool: pi, src: p.src, cx: x})
+      hits.push({ left: cx - sw / 2, right: cx + sw / 2, top: cy - h / 2, bottom: cy + h / 2, pool: pi, src: p.src, cx: x })
       if (Math.abs(x) < bestD) {
         bestD = Math.abs(x)
-        centre = {src: p.src, pool: pi}
+        centre = { src: p.src, pool: pi }
       }
     })
   }
   const hitAt = (x: number, y: number) => hits.find((h) => x >= h.left && x <= h.right && y >= h.top && y <= h.bottom) ?? null
   const local = (e: PointerEvent | MouseEvent) => {
     const r = canvas.getBoundingClientRect()
-    return {x: e.clientX - r.left, y: e.clientY - r.top}
+    return { x: e.clientX - r.left, y: e.clientY - r.top }
   }
 
   // pointer: drag with momentum, hover label, click to centre / focus
@@ -438,9 +438,9 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
   let overPanel = false
   let labelOn = false
   let cursor = ''
-  if (label) gsap.set(label, {xPercent: 20, yPercent: 30, scale: 0, autoAlpha: 0})
-  const labelX = label ? gsap.quickTo(label, 'x', {duration: 0.5, ease: 'power3.out'}) : null
-  const labelY = label ? gsap.quickTo(label, 'y', {duration: 0.5, ease: 'power3.out'}) : null
+  if (label) gsap.set(label, { xPercent: 20, yPercent: 30, scale: 0, autoAlpha: 0 })
+  const labelX = label ? gsap.quickTo(label, 'x', { duration: 0.5, ease: 'power3.out' }) : null
+  const labelY = label ? gsap.quickTo(label, 'y', { duration: 0.5, ease: 'power3.out' }) : null
   const setCursor = (c: string) => {
     if (c !== cursor) {
       cursor = c
@@ -456,7 +456,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     refreshCursor()
     if (!label) return
     gsap.killTweensOf(label, 'scale,autoAlpha')
-    gsap.to(label, {scale: on ? 1 : 0, autoAlpha: on ? 1 : 0, duration: rm ? 0 : on ? 0.35 : 0.25, ease: on ? 'power3.out' : 'power3.in'})
+    gsap.to(label, { scale: on ? 1 : 0, autoAlpha: on ? 1 : 0, duration: rm ? 0 : on ? 0.35 : 0.25, ease: on ? 'power3.out' : 'power3.in' })
   }
   const hover = (on: boolean) => {
     overPanel = on
@@ -481,7 +481,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     kind = e.pointerType || 'mouse'
     try {
       canvas.setPointerCapture(e.pointerId)
-    } catch {}
+    } catch { }
     const p = local(e)
     lastX = p.x
     mx = p.x
@@ -524,7 +524,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     if (pointerId !== null) {
       try {
         canvas.releasePointerCapture(pointerId)
-      } catch {}
+      } catch { }
       pointerId = null
     }
     velocity = e?.type === 'pointercancel' || performance.now() - dragAt > 90 ? 0 : dragVel
@@ -555,7 +555,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     velocity = 0
     target = centreOf(nearestK(current + h.cx))
     snapped = true
-    pending = {src: h.src}
+    pending = { src: h.src }
     showLabel(false)
   }
 
@@ -569,24 +569,24 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     const cx = xs[focus.pool] || 0
     // the others drop away, nearest first
     const ranked = pool
-      .map((_, i) => ({i, x: xs[i]}))
+      .map((_, i) => ({ i, x: xs[i] }))
       .filter((p) => p.i !== focus.pool && p.x !== undefined)
-      .map((p) => ({i: p.i, d: Math.abs((p.x ?? 0) - cx)}))
+      .map((p) => ({ i: p.i, d: Math.abs((p.x ?? 0) - cx) }))
       .sort((a, b) => a.d - b.d)
     let rank = 0
     let lastD = -1
     const order = ranked.map((p) => {
       if (lastD >= 0 && p.d - lastD > 1) rank += 1
       lastD = p.d
-      return {i: p.i, rank}
+      return { i: p.i, rank }
     })
     for (const k of LENS_KEYS) lensBase[k] = u[k].value
     focus.anim?.kill()
-    const s = {v: focusScale}
+    const s = { v: focusScale }
     const tl = gsap.timeline()
-    tl.to(focus, {lens: 0, duration: rm ? 0 : 0.85, ease: 'power3.out'}, 0)
-    tl.to(s, {v: 1.18, duration: rm ? 0 : 0.9, ease: 'power3.out', onUpdate: () => (focusScale = s.v)}, 0)
-    order.forEach((p) => tl.to(drop, {[p.i]: 1, duration: rm ? 0 : 0.7, ease: 'power4.out'}, rm ? 0 : 0.06 * p.rank))
+    tl.to(focus, { lens: 0, duration: rm ? 0 : 0.85, ease: 'power3.out' }, 0)
+    tl.to(s, { v: 1.18, duration: rm ? 0 : 0.9, ease: 'power3.out', onUpdate: () => (focusScale = s.v) }, 0)
+    order.forEach((p) => tl.to(drop, { [p.i]: 1, duration: rm ? 0 : 0.7, ease: 'power4.out' }, rm ? 0 : 0.06 * p.rank))
     focus.anim = tl
     showLabel(false)
     o.onFocusChange(true)
@@ -596,19 +596,19 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     focus.anim?.kill()
     const cx = xs[focus.pool] || 0
     const ranked = pool
-      .map((_, i) => ({i, x: xs[i]}))
+      .map((_, i) => ({ i, x: xs[i] }))
       .filter((p) => p.x !== undefined && (drop[p.i] || 0) > 0)
-      .map((p) => ({i: p.i, d: Math.abs((p.x ?? 0) - cx)}))
+      .map((p) => ({ i: p.i, d: Math.abs((p.x ?? 0) - cx) }))
       .sort((a, b) => b.d - a.d)
     let rank = 0
     let lastD = -1
     const order = ranked.map((p) => {
       if (lastD >= 0 && lastD - p.d > 1) rank += 1
       lastD = p.d
-      return {i: p.i, rank}
+      return { i: p.i, rank }
     })
     o.onFocusChange(false)
-    const s = {v: focusScale}
+    const s = { v: focusScale }
     const tl = gsap.timeline({
       onComplete: () => {
         focus.active = false
@@ -616,9 +616,9 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
         refreshCursor()
       },
     })
-    tl.to(focus, {lens: 1, duration: rm ? 0 : 0.68, ease: 'power3.inOut'}, 0)
-    tl.to(s, {v: 1, duration: rm ? 0 : 0.765, ease: 'power3.out', onUpdate: () => (focusScale = s.v)}, 0)
-    order.forEach((p) => tl.to(drop, {[p.i]: 0, duration: rm ? 0 : 0.595, ease: 'power4.out'}, rm ? 0 : 0.06 * p.rank * 0.7))
+    tl.to(focus, { lens: 1, duration: rm ? 0 : 0.68, ease: 'power3.inOut' }, 0)
+    tl.to(s, { v: 1, duration: rm ? 0 : 0.765, ease: 'power3.out', onUpdate: () => (focusScale = s.v) }, 0)
+    order.forEach((p) => tl.to(drop, { [p.i]: 0, duration: rm ? 0 : 0.595, ease: 'power4.out' }, rm ? 0 : 0.06 * p.rank * 0.7))
     focus.anim = tl
   }
   function step(dir: 1 | -1) {
@@ -646,13 +646,13 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     place()
     const shown: number[] = []
     for (let i = 0; i < xs.length; i++) if (xs[i] !== undefined) shown.push(i)
-    const tl = gsap.timeline({delay: 0.5})
+    const tl = gsap.timeline({ delay: 0.5 })
     const spread = 0.07 * Math.max(shown.length - 1, 1)
     let riseEnd = 0
     shown.forEach((i) => {
       const at = Math.random() * spread
       riseEnd = Math.max(riseEnd, at + 1)
-      tl.to(rise, {[i]: 1, duration: 1, ease: 'power3.out'}, at)
+      tl.to(rise, { [i]: 1, duration: 1, ease: 'power3.out' }, at)
     })
     tl.call(
       () => {
@@ -663,7 +663,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
       riseEnd,
     )
     const ci = nearestI(current)
-    const ranked: {i: number; rank: number}[] = []
+    const ranked: { i: number; rank: number }[] = []
     let maxRank = 0
     for (let i = 0; i < xs.length; i++) {
       if (xs[i] === undefined || Math.floor(i / n) !== MID) continue
@@ -672,15 +672,15 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
       if (d < -n / 2) d += n
       const r = Math.abs(d)
       maxRank = Math.max(maxRank, r)
-      ranked.push({i, rank: r})
+      ranked.push({ i, rank: r })
     }
     const glassAt = riseEnd + 0.25
     let end = glassAt
-    tl.to(focus, {lens: 1, duration: 1.4, ease: 'power2.inOut'}, glassAt)
+    tl.to(focus, { lens: 1, duration: 1.4, ease: 'power2.inOut' }, glassAt)
     ranked.forEach((p) => {
       const at = glassAt + (maxRank - p.rank) * 0.085
       end = Math.max(end, at + 2.15)
-      tl.to(grow, {[p.i]: 1, duration: 2.15, ease: 'expo.inOut'}, at)
+      tl.to(grow, { [p.i]: 1, duration: 2.15, ease: 'expo.inOut' }, at)
     })
     tl.call(
       () => {
@@ -695,7 +695,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     entryAnim = tl
   }
 
-  canvas.addEventListener('wheel', onWheel, {passive: false})
+  canvas.addEventListener('wheel', onWheel, { passive: false })
   canvas.addEventListener('pointerdown', onDown)
   canvas.addEventListener('pointermove', onMove)
   canvas.addEventListener('pointerup', onUp)
@@ -860,7 +860,7 @@ function createEngine(host: HTMLDivElement, label: HTMLDivElement | null, o: Eng
     canvas.remove()
   }
 
-  return {closeFocus, next: () => step(1), previous: () => step(-1), destroy}
+  return { closeFocus, next: () => step(1), previous: () => step(-1), destroy }
 }
 
 const pad = (n: number) => String(n).padStart(2, '0')
@@ -869,7 +869,7 @@ export default function LiquidGlassCarousel({
   items = DEFAULT_ITEMS,
   panelHeight = 450,
   gap = 12,
-  background = '#0d0d0f',
+  background = '#fff',
   ringColor = '#009dff',
   ring = 0.6,
   dispersion = 9,
@@ -915,7 +915,7 @@ export default function LiquidGlassCarousel({
       },
       onFocusChange: (f) => {
         setFocused(f)
-        ;(f ? closeRef.current : rootRef.current)?.focus({preventScroll: true})
+          ; (f ? closeRef.current : rootRef.current)?.focus({ preventScroll: true })
       },
       onEntryDone: setReady,
       onError: () => !gone && setFailed(true),
@@ -957,12 +957,12 @@ export default function LiquidGlassCarousel({
           const c = hostRef.current?.querySelector('canvas')
           if (c) {
             const r = c.getBoundingClientRect()
-            c.dispatchEvent(new MouseEvent('click', {clientX: r.left + r.width / 2, clientY: r.top + r.height / 2}))
+            c.dispatchEvent(new MouseEvent('click', { clientX: r.left + r.width / 2, clientY: r.top + r.height / 2 }))
           }
         }
       }}
-      className={`relative h-full min-h-[320px] w-full overflow-hidden text-white outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/20 ${className}`}
-      style={{background}}
+      className={`relative h-full min-h-[320px] w-full overflow-hidden text-grey outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-grey/20 ${className}`}
+      style={{ background }}
     >
       <p id={id} className="sr-only">
         Liquid glass carousel. Use arrow keys to browse, Enter to view, Escape to close.
@@ -976,7 +976,7 @@ export default function LiquidGlassCarousel({
         <ul className="absolute inset-0 flex snap-x snap-mandatory items-center gap-4 overflow-x-auto px-5">
           {items.map((it, i) => (
             <li key={`${it.src}-${i}`} className="w-56 shrink-0 snap-center">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-white/5">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-grey/5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={it.src} alt={it.title} className="h-full w-full object-cover" />
               </div>
@@ -993,7 +993,7 @@ export default function LiquidGlassCarousel({
           <div
             ref={labelRef}
             aria-hidden
-            className="pointer-events-none absolute top-0 left-0 z-20 rounded-full bg-white px-4 py-2 text-[11px] font-semibold tracking-[0.18em] text-black uppercase"
+            className="pointer-events-none absolute top-0 left-0 z-20 rounded-full bg-grey px-4 py-2 text-[11px] font-semibold tracking-[0.18em] text-black uppercase"
           >
             View
           </div>
@@ -1004,7 +1004,7 @@ export default function LiquidGlassCarousel({
             aria-label="Close focused item"
             tabIndex={focused ? 0 : -1}
             className="absolute top-[4.5%] right-[4%] z-20 flex min-h-11 items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-opacity duration-300"
-            style={{opacity: focused ? 1 : 0, pointerEvents: focused ? 'auto' : 'none'}}
+            style={{ opacity: focused ? 1 : 0, pointerEvents: focused ? 'auto' : 'none' }}
           >
             Close
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden className="size-4">
@@ -1013,7 +1013,7 @@ export default function LiquidGlassCarousel({
           </button>
           <div className={`absolute inset-x-[4%] bottom-[3%] z-10 items-end justify-between ${focused ? 'hidden' : 'flex'}`}>
             <Arrow dir="prev" disabled={!ready} onClick={() => engine.current?.previous()} />
-            <p className="pb-3 font-mono text-[11px] tracking-[0.18em] text-white/50 tabular-nums">
+            <p className="pb-3 font-mono text-[11px] tracking-[0.18em] text-grey/50 tabular-nums">
               {pad(active + 1)} / {pad(items.length)}
             </p>
             <Arrow dir="next" disabled={!ready} onClick={() => engine.current?.next()} />
@@ -1024,14 +1024,14 @@ export default function LiquidGlassCarousel({
   )
 }
 
-function Arrow({dir, disabled, onClick}: {dir: 'prev' | 'next'; disabled: boolean; onClick: () => void}) {
+function Arrow({ dir, disabled, onClick }: { dir: 'prev' | 'next'; disabled: boolean; onClick: () => void }) {
   return (
     <button
       type="button"
       aria-label={dir === 'prev' ? 'Previous item' : 'Next item'}
       disabled={disabled}
       onClick={onClick}
-      className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white backdrop-blur transition-colors hover:bg-white hover:text-black disabled:opacity-40 disabled:hover:bg-white/8 disabled:hover:text-white"
+      className="flex size-11 items-center justify-center rounded-full border border-grey/15 bg-grey/8 text-grey backdrop-blur transition-colors hover:bg-grey hover:text-black disabled:opacity-40 disabled:hover:bg-grey/8 disabled:hover:text-grey"
     >
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="size-4">
         {dir === 'prev' ? <path d="M13 8H3m4-4-4 4 4 4" /> : <path d="M3 8h10M9 4l4 4-4 4" />}

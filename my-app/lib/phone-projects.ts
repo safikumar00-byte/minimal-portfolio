@@ -1,19 +1,28 @@
-import type { ImageItem } from "@/components/ui/phone-carousel";
+export type ImageItem = {
+  src: string;
+  alt: string;
+  title: string;
+  urlPath?: string;
+};
 
 export type PhoneProject = {
   slug: string;
   title: string;
   platform: string;
+  deviceType?: "phone" | "desktop";
   summary: string;
   overview: string;
   focusAreas: string[];
   images: ImageItem[];
 };
 
+export type Project = PhoneProject;
+
 export const turboPaisaProject: PhoneProject = {
   slug: "turbopaisa",
   title: "TurboPaisa",
   platform: "Mobile app · Rewards and earnings",
+  deviceType: "phone",
   summary:
     "A rewards experience for discovering earning activities, tracking points, and managing wallet and referral journeys.",
   overview:
@@ -52,6 +61,7 @@ export const credBuddhaProject: PhoneProject = {
   slug: "credbuddha",
   title: "CredBuddha",
   platform: "Mobile app · Lending and credit",
+  deviceType: "phone",
   summary:
     "A mobile financial-services experience for discovering loan and credit offers, applying, and following application status.",
   overview:
@@ -87,6 +97,75 @@ export const credBuddhaProject: PhoneProject = {
       src: "/work/credbuddha/pending.jpg",
       alt: "CredBuddha loan application pending review screen",
       title: "Application status",
+    },
+  ],
+};
+
+export const cvmHrmProject: PhoneProject = {
+  slug: "cvm-hrm",
+  title: "Core Volt Matrix",
+  platform: "Desktop web portal · Enterprise HRMS",
+  deviceType: "desktop",
+  summary:
+    "An enterprise HRMS platform unifying employee self-service, onboarding workflows, attendance and timesheet review, leave management, and asset tracking.",
+  overview:
+    "The supplied screens show a comprehensive desktop portal designed for both employees and HR administrators. Built with a persistent navigation rail, global search, and clean data tables, the system streamlines everyday tasks—such as clocking attendance and requesting leave—while equipping HR teams with structured workflows for employee onboarding, asset tracking, and company announcements.",
+  focusAreas: [
+    "Overview & operational dashboard",
+    "Employee onboarding & progress",
+    "Attendance tracking & timesheets",
+    "Leave self-service & approvals",
+    "Asset inventory & allocation",
+    "Team directory & employee self-service",
+  ],
+  images: [
+    {
+      src: "/work/cvm-hrm/dashboard.jpg",
+      alt: "CVM HRM overview dashboard with attendance, quick actions, and metrics",
+      title: "Overview dashboard",
+      urlPath: "overview",
+    },
+    {
+      src: "/work/cvm-hrm/leaves.jpg",
+      alt: "CVM HRM leave management dashboard and request history",
+      title: "Leave management",
+      urlPath: "leaves",
+    },
+    {
+      src: "/work/cvm-hrm/attendance.jpg",
+      alt: "CVM HRM attendance tracking and timesheet review",
+      title: "Attendance & timesheets",
+      urlPath: "attendance",
+    },
+    {
+      src: "/work/cvm-hrm/onboarding.jpg",
+      alt: "CVM HRM employee onboarding dashboard and progress tracker",
+      title: "Employee onboarding",
+      urlPath: "onboarding",
+    },
+    {
+      src: "/work/cvm-hrm/assets.jpg",
+      alt: "CVM HRM asset management and equipment allocation list",
+      title: "Asset management",
+      urlPath: "assets",
+    },
+    {
+      src: "/work/cvm-hrm/team.jpg",
+      alt: "CVM HRM team directory and department management",
+      title: "Team directory",
+      urlPath: "team",
+    },
+    {
+      src: "/work/cvm-hrm/self-service.jpg",
+      alt: "CVM HRM employee self-service profile and details",
+      title: "Employee self-service",
+      urlPath: "self-service",
+    },
+    {
+      src: "/work/cvm-hrm/hr-requests.jpg",
+      alt: "CVM HRM HR requests and approval workflow",
+      title: "HR requests",
+      urlPath: "hr-requests",
     },
   ],
 };

@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type CSSProperties } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  type CSSProperties,
+} from "react";
 
 export type ImageItem = {
   src: string;
@@ -13,84 +18,113 @@ type PhoneCarouselProps = {
   images: ImageItem[];
   label: string;
   compact?: boolean;
+  autoPlayInterval?: number;
 };
+
+function getCircularOffset(index: number, activeIndex: number, total: number) {
+  let diff = index - activeIndex;
+  while (diff > total / 2) diff -= total;
+  while (diff < -total / 2) diff += total;
+  return diff;
+}
 
 export function PhoneCarousel({
   images,
   label,
   compact = false,
+  autoPlayInterval = 3200,
 }: PhoneCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const move = useCallback(
+    (offset: number) => {
+      setActiveIndex(
+        (index) => (index + offset + images.length) % images.length
+      );
+    },
+    [images.length]
+  );
+
+  // Auto transition for compact carousels (each slide becomes active with a delay)
+  useEffect(() => {
+    if (!compact || images.length <= 1 || isPaused) return;
+
+    // Respect user's motion preferences
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    }, autoPlayInterval);
+
+    return () => clearInterval(timer);
+  }, [compact, images.length, isPaused, autoPlayInterval]);
+
+  // Pause when the page or tab is in background
+  useEffect(() => {
+    if (!compact) return;
+
+    const handleVisibility = () => {
+      setIsPaused(document.hidden);
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, [compact]);
 
   if (images.length === 0) return null;
-
-  const activeImage = images[activeIndex];
-  const getImageAt = (offset: number) =>
-    images[(activeIndex + offset + images.length) % images.length];
-  const move = (offset: number) => {
-    setActiveIndex((index) => (index + offset + images.length) % images.length);
-  };
 
   return (
     <section
       className={`phone-carousel${compact ? " phone-carousel--compact" : ""}`}
       aria-label={`${label} mobile app screens`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
     >
+      <div className="overlay"></div>
       <div className="phone-carousel-stage">
-        {[-1, 0, 1].map((offset) => {
-          const image = getImageAt(offset);
+        {images.map((image, index) => {
+          const offset = getCircularOffset(index, activeIndex, images.length);
           const isActive = offset === 0;
+          const isSide = Math.abs(offset) === 1;
+
           return (
             <button
               aria-label={`${isActive ? "Selected" : "Show"} screen: ${image.title}`}
               aria-pressed={isActive}
-              className={`phone-device${isActive ? " is-active" : " is-side"}`}
-              key={`${offset}-${image.src}`}
+              className={`phone-device${isActive ? " is-active" : isSide ? " is-side" : " is-hidden"
+                }`}
+              key={image.src}
               onClick={() => {
-                if (!isActive) move(offset);
+                if (!isActive) move(offset > 0 ? 1 : -1);
               }}
               style={{ "--phone-offset": offset } as CSSProperties}
               tabIndex={isActive ? 0 : -1}
               type="button"
             >
-              <span className="phone-device-screen">
+              <span className="phone-device-screen shine">
                 <Image
                   src={image.src}
                   alt={isActive ? image.alt : ""}
                   fill
-                  sizes={compact ? "120px" : "(max-width: 760px) 42vw, 220px"}
+                  sizes={compact ? "140px" : "(max-width: 760px) 42vw, 220px"}
                   priority={!compact && activeIndex === 0 && isActive}
                 />
               </span>
             </button>
           );
         })}
-      </div>
-
-      <div className="phone-carousel-footer">
-        <button
-          aria-label="Previous app screen"
-          className="phone-carousel-arrow"
-          onClick={() => move(-1)}
-          type="button"
-        >
-          <span aria-hidden="true">←</span>
-        </button>
-        <div className="phone-carousel-status" aria-live="polite">
-          <span>{activeImage.title}</span>
-          <small>
-            {String(activeIndex + 1).padStart(2, "0")} /{" "}
-            {String(images.length).padStart(2, "0")}
-          </small>
-        </div>
-        <button
-          aria-label="Next app screen"
-          className="phone-carousel-arrow"
-          onClick={() => move(1)}
-          type="button"
-        >
-          <span aria-hidden="true">→</span>
-        </button>
       </div>
 
       {!compact && (
