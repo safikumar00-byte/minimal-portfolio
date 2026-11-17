@@ -1,0 +1,18 @@
+{
+  "stateFlowId": "wallet-states",
+  "title": "Wallet Balance States",
+  "states": [
+    {
+      "state": "accumulating",
+      "screen": "turbopaisa-wallet-balance-default-01.jpg",
+      "image": "/figma/turbopaisa/screens/wallet/turbopaisa-wallet-balance-default-01.jpg",
+      "trigger": "Earning coins"
+    },
+    {
+      "state": "ledger-view",
+      "screen": "turbopaisa-wallet-transaction-history-ledger-01.jpg",
+      "image": "/figma/turbopaisa/screens/transactions/turbopaisa-wallet-transaction-history-ledger-01.jpg",
+      "trigger": "Viewing past payouts"
+    }
+  ]
+}

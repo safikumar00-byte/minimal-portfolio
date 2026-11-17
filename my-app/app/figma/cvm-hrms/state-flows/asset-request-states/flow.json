@@ -1,0 +1,24 @@
+{
+  "stateFlowId": "asset-request-states",
+  "title": "Hardware Asset Lifecycle States",
+  "states": [
+    {
+      "state": "inventory-available",
+      "screen": "cvm-hrms-assets-management-dashboard-01.jpg",
+      "image": "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-management-dashboard-01.jpg",
+      "trigger": "Item in stock"
+    },
+    {
+      "state": "request-review",
+      "screen": "cvm-hrms-assets-request-pending-review-04.jpg",
+      "image": "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-request-pending-review-04.jpg",
+      "trigger": "Employee hardware ticket"
+    },
+    {
+      "state": "deployed",
+      "screen": "cvm-hrms-assets-registry-table-default-02.jpg",
+      "image": "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-registry-table-default-02.jpg",
+      "trigger": "Asset handed over"
+    }
+  ]
+}

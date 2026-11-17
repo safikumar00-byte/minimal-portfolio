@@ -1,0 +1,30 @@
+{
+  "stateFlowId": "authentication-states",
+  "title": "Authentication Lifecycle States",
+  "states": [
+    {
+      "state": "unauthenticated",
+      "screen": "credbuddha-onboarding-welcome-default-01.jpg",
+      "image": "/figma/credbuddha/screens/onboarding/credbuddha-onboarding-welcome-default-01.jpg",
+      "trigger": "App Launch"
+    },
+    {
+      "state": "phone-input",
+      "screen": "credbuddha-auth-phone-login-default-01.jpg",
+      "image": "/figma/credbuddha/screens/authentication/credbuddha-auth-phone-login-default-01.jpg",
+      "trigger": "Tap Get Started"
+    },
+    {
+      "state": "otp-validating",
+      "screen": "credbuddha-auth-otp-verification-default-02.jpg",
+      "image": "/figma/credbuddha/screens/authentication/credbuddha-auth-otp-verification-default-02.jpg",
+      "trigger": "Submit Phone Number"
+    },
+    {
+      "state": "authenticated",
+      "screen": "credbuddha-registration-success-confirmed-02.jpg",
+      "image": "/figma/credbuddha/screens/registration/credbuddha-registration-success-confirmed-02.jpg",
+      "trigger": "OTP Verified"
+    }
+  ]
+}

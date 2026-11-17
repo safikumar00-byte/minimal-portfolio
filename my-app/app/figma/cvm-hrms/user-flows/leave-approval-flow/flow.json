@@ -1,0 +1,38 @@
+{
+  "flowId": "leave-approval-flow",
+  "title": "Leave Request & Approval Flow",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Leave Balances Dashboard",
+      "action": "Employee reviews remaining Paid / Sick leaves and taps 'Apply Leave'",
+      "response": "Opens Leave Application Dialog",
+      "image": "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-balances-dashboard-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Supervisor Approval Queue",
+      "action": "Manager evaluates team bandwidth and clicks 'Review'",
+      "response": "Opens pending requests",
+      "image": "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-approval-pending-queue-02.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Apply Leave Dialog",
+      "action": "Employee chooses leave category, date range, and reason; submits",
+      "response": "Places request in Supervisor Leave Inbox",
+      "image": "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-apply-request-modal-03.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Leave Approval Confirmation",
+      "action": "Manager confirms approval",
+      "response": "Deducts leave quota and updates employee calendar",
+      "image": "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-approval-confirmation-modal-04.jpg",
+      "nextStep": null
+    }
+  ]
+}

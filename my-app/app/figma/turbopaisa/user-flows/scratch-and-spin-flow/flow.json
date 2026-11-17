@@ -1,0 +1,38 @@
+{
+  "flowId": "scratch-and-spin-flow",
+  "title": "Scratch & Spin Gamified Rewards",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Home Rewards Dashboard",
+      "action": "User taps daily 'Scratch & Win' banner",
+      "response": "Opens interactive scratch-card canvas",
+      "image": "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Scratch Card Canvas",
+      "action": "User drags finger across metallic scratch surface",
+      "response": "Reveals bonus coins and offers Spin Wheel multiplier",
+      "image": "/figma/turbopaisa/screens/scratch-cards/turbopaisa-tasks-scratch-card-ready-01.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Lucky Spin Wheel",
+      "action": "User taps 'Spin Now'",
+      "response": "Rotates wheel with physics deceleration onto prize sector",
+      "image": "/figma/turbopaisa/screens/spin-wheel/turbopaisa-games-spin-wheel-default-01.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Celebration Reward Modal",
+      "action": "User taps 'Claim to Wallet'",
+      "response": "Coins credited instantly; celebration dismisses",
+      "image": "/figma/turbopaisa/screens/spin-wheel/turbopaisa-games-spin-result-celebration-02.jpg",
+      "nextStep": null
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+flowchart TD
+  A[Welcome Splash] -->|Tap 'Get Started'| B[Mobile Phone Entry]
+  B -->|Submit Phone Number| C[SMS OTP Verification]
+  C -->|Invalid OTP| C
+  C -->|OTP Verified| D[Create Account Profile]
+  D -->|Submit Details| E[Account Created Modal]
+  E -->|Tap 'Continue'| F[Home Discovery Feed]

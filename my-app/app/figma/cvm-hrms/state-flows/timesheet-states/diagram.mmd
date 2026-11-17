@@ -1,0 +1,8 @@
+stateDiagram-v2
+  [*] --> Draft
+  Draft --> Submitted: Employee submits
+  Submitted --> InspectionModal: Manager opens audit
+  InspectionModal --> Approved: All hours approved
+  InspectionModal --> Rejected: Discrepancy identified
+  Rejected --> Draft: Reverted with feedback note
+  Approved --> [*]

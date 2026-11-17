@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import PageTransition from "@/components/page-transition";
 import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
+import CaseStudyLayout from "@/components/case-study-layout";
+import ProjectCaseStudyContent, {
+  type RelatedProjectItem,
+} from "@/components/ProjectCaseStudyContent";
+import type { SectionNavItem } from "@/components/ProjectSectionNavigation";
 
 export const metadata: Metadata = {
   title: "Game Landing Pages & Campaign Experiences — Sunil Kumar Reddy",
@@ -47,35 +51,53 @@ const CAMPAIGN_EXPERIENCES = [
   },
 ];
 
+const RELATED_PROJECTS: RelatedProjectItem[] = [
+  {
+    title: "TurboPaisa",
+    href: "/work/turbopaisa",
+    thumbnailSrc:
+      "/work/turbopaisa/turbopaisa-home-rewards-dashboard-default-01.jpg",
+    thumbnailAlt: "TurboPaisa mobile app home screen",
+  },
+  {
+    title: "CredBuddha",
+    href: "/work/credbuddha",
+    thumbnailSrc:
+      "/work/credbuddha/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
+    thumbnailAlt: "CredBuddha mobile app home screen",
+  },
+  {
+    title: "Core Volt Matrix",
+    href: "/work/cvm-hrm",
+    thumbnailSrc:
+      "/work/cvm-hrm/cvm-hrms-dashboard-overview-default-01.jpg",
+    thumbnailAlt: "Core Volt Matrix HRMS dashboard",
+  },
+];
+
+const NAV_ITEMS: SectionNavItem[] = [
+  { id: "overview", label: "Overview" },
+  { id: "highlights", label: "Highlights" },
+  { id: "solution", label: "Core experiences" },
+  { id: "behind-the-build", label: "Behind the build" },
+  { id: "reflection", label: "Reflection" },
+  { id: "other-projects", label: "Other projects" },
+];
+
 export default function GameCampaignsPage() {
   return (
     <PageTransition>
-      <div className="portfolio-shell">
-        <main className="case-study-page pb-24">
-        <Link className="case-study-back" href="/">
-          <span aria-hidden="true">←</span> All selected work
-        </Link>
-
-        {/* Hero Section */}
-        <section className="case-study-hero case-study-hero--desktop">
-          <div className="case-study-intro">
-            <p className="case-study-eyebrow">CREATIVE DEVELOPMENT • DIGITAL EXPERIENCES</p>
-            <h1>Game &amp; Campaign Landing Pages</h1>
-            <p className="case-study-summary">
-              A dedicated creative development collection exploring high-impact game landing pages,
-              interactive promotional microsites, and motion-driven web experiences with custom shaders and 3D interactions.
-            </p>
-            <ul className="case-study-tags">
-              <li>Creative Development</li>
-              <li>WebGL &amp; Shaders</li>
-              <li>Motion Design</li>
-              <li>Game Landing Pages</li>
-              <li>Digital Campaigns</li>
-            </ul>
-          </div>
-
-          <div className="flex items-center justify-center p-4">
-            <div className="w-full max-w-[460px]">
+      <CaseStudyLayout
+        title="Game & Campaign Landing Pages"
+        summary="A dedicated creative development collection exploring high-impact game landing pages, interactive promotional microsites, and motion-driven web experiences."
+        categoryTags={["Creative Dev", "WebGL & Shaders", "2024–2026"]}
+        year="2024–2026"
+        status="Interactive"
+        navItems={NAV_ITEMS}
+      >
+        <ProjectCaseStudyContent
+          heroCustom={
+            <div className="w-full max-w-[440px] flex items-center justify-center py-4">
               <PortfolioTicket
                 presenter="INTERACTIVE EXPERIENCES PRESENT"
                 name={"GAME & CAMPAIGN\nLANDING PAGES"}
@@ -83,48 +105,84 @@ export default function GameCampaignsPage() {
                 dates="DIGITAL EXPERIENCES"
                 stubText="EXPLORE"
                 watermark="PLAY"
-                href="" // on the destination page itself, no outer link needed
+                href=""
               />
             </div>
-          </div>
-        </section>
+          }
+          overview={{
+            lead: "Where game aesthetics meet production-grade web craft.",
+            description: [
+              "Modern game and entertainment campaigns demand more than static banners and flat layouts. They require immersive worldbuilding, real-time tactile responsiveness, and cinematic pacing.",
+              "This collection encompasses custom WebGL shader development, physics-based mouse interactions, responsive typography scaling, and performance-tuned motion engines designed to run smoothly across both desktop and mobile devices.",
+            ],
+            role: "Creative Developer & Interactive Designer · 2024–2026",
+            timeline: "2024–2026",
+            tools: ["Three.js", "WebGL / GLSL", "React", "Canvas API", "Tailwind CSS"],
+          }}
+          highlights={[
+            {
+              value: "GLSL Shaders",
+              label: "Real-time dithering, grain & screen-space effects",
+            },
+            {
+              value: "60 FPS Motion",
+              label: "GPU-accelerated pointer physics and frame timing",
+            },
+            {
+              value: "Adaptive UI",
+              label: "Touch gestures, fallback canvas, and fluid typography",
+            },
+          ]}
+          solution={{
+            lead: "Five foundational design and engineering disciplines powering high-engagement interactive campaigns.",
+            blocks: [
+              {
+                subheading: "Focus Areas & Interactive Capabilities",
+                lead: "Bridging cinematic 3D models, smooth fluid typography, and dynamic lighting to give flagship hardware and software launches an editorial, tactile stage.",
+                body: "From announcement teasers to interactive title reveals, each module is engineered to capture attention, communicate lore, and drive user registration.",
+              },
+            ],
+          }}
+          behindTheBuild={{
+            lead: "Shader mathematics, screen-space dithering, and canvas performance.",
+            paragraphs: [
+              "Interactive web experiences frequently stumble on low-end hardware. Rather than relying on heavy uncompressed video files, we utilize lightweight procedural GLSL fragment shaders—such as Bayer matrix ordered dithering and perlin noise—that calculate effects per-pixel on the GPU.",
+              "Animations are tied directly to requestAnimationFrame with delta-time clamping, ensuring fluid 60fps pacing regardless of display refresh rate.",
+            ],
+            note: "Built with modern WebGL2 standards and progressive canvas fallbacks for full device compatibility.",
+          }}
+          reflection={{
+            lead: "Spectacle is meaningless without responsiveness.",
+            paragraphs: [
+              "The most striking visual effects quickly frustrate users if they impede navigation or drain battery. True creative development is the art of achieving maximum aesthetic impact with minimal computational footprint.",
+              "Designing touch-first fallbacks and respecting reduced-motion preferences ensures that the magic translates across all screen sizes.",
+            ],
+          }}
+          relatedProjects={RELATED_PROJECTS}
+        />
 
-        {/* Overview Section */}
-        <section className="case-study-overview border-t border-neutral-200 pt-10 mt-10">
-          <p className="case-study-eyebrow">DISCIPLINE OVERVIEW</p>
-          <h2>Where game aesthetics meet production-grade web craft.</h2>
-          <p>
-            Modern game and entertainment campaigns demand more than static banners and flat layouts.
-            They require immersive worldbuilding, real-time tactile responsiveness, and cinematic pacing.
-            This collection encompasses custom WebGL shader development, physics-based mouse interactions,
-            responsive typography scaling, and performance-tuned motion engines designed to run smoothly
-            across both desktop and mobile devices.
-          </p>
-        </section>
-
-        {/* Focus Areas Grid */}
-        <section className="mt-14">
-          <p className="case-study-eyebrow">CORE EXPERIENCES &amp; CAPABILITIES</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        {/* Extended Cards for the 5 Capabilities inside the Solution area */}
+        <div className="w-full -mt-8 mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {CAMPAIGN_EXPERIENCES.map((exp) => (
               <div
                 key={exp.category}
-                className="p-6 rounded-xl border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:border-neutral-300 transition-all duration-200"
+                className="p-5 rounded-2xl border border-neutral-200/90 bg-[#F9F9F9] hover:bg-white hover:border-neutral-300 hover:shadow-sm transition-all duration-200"
               >
-                <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-500">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
                   {exp.category}
                 </span>
-                <h3 className="text-base font-medium text-neutral-900 mt-2 mb-3">
+                <h3 className="text-sm font-medium text-neutral-900 mt-1.5 mb-2">
                   {exp.headline}
                 </h3>
-                <p className="text-xs text-neutral-600 leading-relaxed mb-4">
+                <p className="text-xs text-neutral-600 leading-relaxed mb-3">
                   {exp.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {exp.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="text-[10px] px-2 py-1 bg-white border border-neutral-200 rounded text-neutral-600"
+                      className="text-[10px] px-2 py-0.5 bg-white border border-neutral-200 rounded text-neutral-600"
                     >
                       {skill}
                     </span>
@@ -133,9 +191,8 @@ export default function GameCampaignsPage() {
               </div>
             ))}
           </div>
-        </section>
-        </main>
-      </div>
+        </div>
+      </CaseStudyLayout>
     </PageTransition>
   );
 }

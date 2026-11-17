@@ -1,0 +1,6 @@
+flowchart TD
+  A[Loan Terms & EMI Slider] -->|Tap 'Apply'| B[Step 1: PAN & Employment]
+  B -->|Form Validated| C[Step 2: Income & Bank KYC]
+  C -->|Submit Application| D[Underwriting Processing Queue]
+  D -->|Score >= 750| E[Loan Approved: ₹1,50,000]
+  D -->|Score < 750| F[Application Declined / Alternatives]

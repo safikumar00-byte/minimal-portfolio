@@ -1,28 +1,35 @@
-import Image from "next/image";
-import CaseStudyLayout, {
-  type CaseStudySection,
-  type RelatedProject,
-} from "@/components/case-study-layout";
+"use client";
+
+import * as React from "react";
+import PageTransition from "@/components/page-transition";
+import CaseStudyLayout from "@/components/case-study-layout";
+import ProjectCaseStudyContent, {
+  type RelatedProjectItem,
+} from "@/components/ProjectCaseStudyContent";
 import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
 import type { PhoneProject } from "@/lib/phone-projects";
+import type { SectionNavItem } from "@/components/ProjectSectionNavigation";
 
-const RELATED_PROJECTS: RelatedProject[] = [
+const ALL_RELATED_PROJECTS: RelatedProjectItem[] = [
   {
     title: "TurboPaisa",
     href: "/work/turbopaisa",
-    thumbnailSrc: "/work/turbopaisa/home.jpg",
+    thumbnailSrc:
+      "/work/turbopaisa/turbopaisa-home-rewards-dashboard-default-01.jpg",
     thumbnailAlt: "TurboPaisa mobile app home screen",
   },
   {
     title: "CredBuddha",
     href: "/work/credbuddha",
-    thumbnailSrc: "/work/credbuddha/home.jpg",
+    thumbnailSrc:
+      "/work/credbuddha/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
     thumbnailAlt: "CredBuddha mobile app home screen",
   },
   {
     title: "Core Volt Matrix",
     href: "/work/cvm-hrm",
-    thumbnailSrc: "/work/cvm-hrm/dashboard.jpg",
+    thumbnailSrc:
+      "/work/cvm-hrm/cvm-hrms-dashboard-overview-default-01.jpg",
     thumbnailAlt: "Core Volt Matrix HRMS dashboard",
   },
   {
@@ -38,7 +45,7 @@ const RELATED_PROJECTS: RelatedProject[] = [
         tilt={false}
         venue="CREATIVE DEVELOPMENT"
         watermark="PLAY"
-        width={150}
+        width={130}
       />
     ),
   },
@@ -49,93 +56,78 @@ export default function ProjectCaseStudy({
 }: {
   project: PhoneProject;
 }) {
-  const sections: CaseStudySection[] = [
-    {
-      id: "overview",
-      title: "Overview",
-      content: (
-        <>
-          <p>{project.overview}</p>
-          <dl className="case-study-metadata">
-            <div>
-              <dt>Project type</dt>
-              <dd>{project.platform}</dd>
-            </div>
-            <div>
-              <dt>Screen examples</dt>
-              <dd>{project.images.length}</dd>
-            </div>
-          </dl>
-        </>
-      ),
-    },
-    {
-      id: "exploration",
-      title: "Exploration",
-      content: (
-        <div className="case-study-gallery">
-          {project.images.map((image) => (
-            <figure className="case-study-gallery-item" key={image.src}>
-              <div className="case-study-gallery-image">
-                <Image
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 760px) 80vw, (max-width: 1180px) 55vw, 42vw"
-                  src={image.src}
-                />
-              </div>
-              <figcaption>{image.title}</figcaption>
-            </figure>
-          ))}
-        </div>
-      ),
-    },
-    {
-      id: "what-i-created",
-      title: "What I created",
-      content: (
-        <ul className="case-study-focus-list">
-          {project.focusAreas.map((area) => (
-            <li key={area}>{area}</li>
-          ))}
-        </ul>
-      ),
-    },
-    {
-      id: "behind-the-exploration",
-      title: "Behind the exploration",
-      content: (
-        <p className="case-study-source-note">
-          Screens shown are from the supplied design files. Product behavior
-          and flow descriptions are based on those screens.
-        </p>
-      ),
-    },
-  ];
-
-  const relatedProjects = RELATED_PROJECTS.filter(
-    (relatedProject) => relatedProject.href !== `/work/${project.slug}`,
+  const relatedProjects = ALL_RELATED_PROJECTS.filter(
+    (p) => p.href !== `/work/${project.slug}`,
   );
-  const heroImage = project.images[0];
+
+  // Dynamically assemble right-rail navigation items based on actual content
+  const navItems: SectionNavItem[] = [];
+
+  if (project.overviewData || project.overview) {
+    navItems.push({ id: "overview", label: "Overview" });
+  }
+
+  if (project.highlights && project.highlights.length > 0) {
+    navItems.push({ id: "highlights", label: "Highlights" });
+  }
+
+  if (
+    (project.userFlows && project.userFlows.length > 0) ||
+    (project.stateFlows && project.stateFlows.length > 0)
+  ) {
+    navItems.push({ id: "flows", label: "User & State Flows" });
+  }
+
+  if (
+    (project.solution && project.solution.blocks.length > 0) ||
+    project.images.length > 0
+  ) {
+    navItems.push({ id: "solution", label: "Solution" });
+  }
+
+  if (project.behindTheBuild && project.behindTheBuild.paragraphs.length > 0) {
+    navItems.push({ id: "behind-the-build", label: "Behind the build" });
+  }
+
+  if (project.reflection && project.reflection.paragraphs.length > 0) {
+    navItems.push({ id: "reflection", label: "Reflection" });
+  }
+
+  if (relatedProjects.length > 0) {
+    navItems.push({ id: "other-projects", label: "Other projects" });
+  }
 
   return (
-    <CaseStudyLayout
-      title={project.title}
-      summary={project.summary}
-      tags={[project.platform, ...project.focusAreas.slice(0, 2)]}
-      hero={
-        heroImage ? (
-          <Image
-            alt={heroImage.alt}
-            fill
-            priority
-            sizes="(max-width: 760px) 100vw, (max-width: 1180px) 65vw, 70vw"
-            src={heroImage.src}
-          />
-        ) : null
-      }
-      sections={sections}
-      relatedProjects={relatedProjects}
-    />
+    <PageTransition>
+      <CaseStudyLayout
+        title={project.title}
+        summary={project.shortDescription ?? project.summary}
+        categoryTags={
+          project.categoryTags ?? [
+            project.platform,
+            ...project.focusAreas.slice(0, 2),
+          ]
+        }
+        year={project.year}
+        status={project.status}
+        figmaUrl={project.figmaUrl}
+        navItems={navItems}
+      >
+        <ProjectCaseStudyContent
+          deviceType={project.deviceType ?? "phone"}
+          heroImage={project.images[0]}
+          overview={project.overviewData ?? project.overview}
+          highlights={project.highlights}
+          userFlows={project.userFlows}
+          stateFlows={project.stateFlows}
+          figmaUrl={project.figmaUrl}
+          solution={project.solution}
+          behindTheBuild={project.behindTheBuild}
+          reflection={project.reflection}
+          relatedProjects={relatedProjects}
+          fallbackImages={project.images}
+        />
+      </CaseStudyLayout>
+    </PageTransition>
   );
 }

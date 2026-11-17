@@ -1,0 +1,18 @@
+{
+  "stateFlowId": "withdrawal-states",
+  "title": "Withdrawal Pipeline States",
+  "states": [
+    {
+      "state": "form-entry",
+      "screen": "turbopaisa-wallet-withdrawal-details-payout-01.jpg",
+      "image": "/figma/turbopaisa/screens/withdrawals/turbopaisa-wallet-withdrawal-details-payout-01.jpg",
+      "trigger": "Tap Withdraw"
+    },
+    {
+      "state": "processing",
+      "screen": "turbopaisa-wallet-withdrawal-processing-pending-02.jpg",
+      "image": "/figma/turbopaisa/screens/withdrawals/turbopaisa-wallet-withdrawal-processing-pending-02.jpg",
+      "trigger": "Submit UPI Details"
+    }
+  ]
+}

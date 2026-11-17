@@ -1,0 +1,38 @@
+{
+  "flowId": "wallet-withdrawal-flow",
+  "title": "Wallet Cashout & Payout Processing",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Wallet Overview",
+      "action": "User checks coin balance and taps 'Withdraw Cash'",
+      "response": "Checks minimum threshold; opens Payout Form",
+      "image": "/figma/turbopaisa/screens/wallet/turbopaisa-wallet-balance-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Payout Method Form",
+      "action": "User enters UPI ID (e.g. mobile@upi) and confirms payout amount",
+      "response": "Dispatches payment gateway request",
+      "image": "/figma/turbopaisa/screens/withdrawals/turbopaisa-wallet-withdrawal-details-payout-01.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Withdrawal Processing Screen",
+      "action": "System initiates IMPS/UPI transfer with 24-hr status SLA",
+      "response": "Logs debit entry in Transaction History",
+      "image": "/figma/turbopaisa/screens/withdrawals/turbopaisa-wallet-withdrawal-processing-pending-02.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Transaction Ledger",
+      "action": "User reviews historical deposits and payout records",
+      "response": "Shows live status badge (Pending / Completed)",
+      "image": "/figma/turbopaisa/screens/transactions/turbopaisa-wallet-transaction-history-ledger-01.jpg",
+      "nextStep": null
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "stateFlowId": "reward-states",
+  "title": "Reward Gamification States",
+  "states": [
+    {
+      "state": "unscratched",
+      "screen": "turbopaisa-tasks-scratch-card-ready-01.jpg",
+      "image": "/figma/turbopaisa/screens/scratch-cards/turbopaisa-tasks-scratch-card-ready-01.jpg",
+      "trigger": "Daily task active"
+    },
+    {
+      "state": "spinning",
+      "screen": "turbopaisa-games-spin-wheel-default-01.jpg",
+      "image": "/figma/turbopaisa/screens/spin-wheel/turbopaisa-games-spin-wheel-default-01.jpg",
+      "trigger": "User triggers spin wheel"
+    },
+    {
+      "state": "celebration",
+      "screen": "turbopaisa-games-spin-result-celebration-02.jpg",
+      "image": "/figma/turbopaisa/screens/spin-wheel/turbopaisa-games-spin-result-celebration-02.jpg",
+      "trigger": "Wheel stops on prize sector"
+    }
+  ]
+}

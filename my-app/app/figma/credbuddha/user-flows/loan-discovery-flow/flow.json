@@ -1,0 +1,30 @@
+{
+  "flowId": "loan-discovery-flow",
+  "title": "Loan & Credit Card Discovery Flow",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Home Discovery Dashboard",
+      "action": "User views credit score gauge and taps 'Pre-Approved Offers'",
+      "response": "Fetches personalized partner lending cards",
+      "image": "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Pre-Approved Loan Marketplace",
+      "action": "User selects lender offer or switches to credit card tab",
+      "response": "Opens detailed loan terms or card options",
+      "image": "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-offers-default-02.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Credit Card Offers Hub",
+      "action": "User compares cashback perks, interest APR, and annual fee waiver",
+      "response": "Displays instant eligibility application CTA",
+      "image": "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-creditcard-promo-default-03.jpg",
+      "nextStep": null
+    }
+  ]
+}

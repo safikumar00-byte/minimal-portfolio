@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> Accumulating
+  Accumulating --> ThresholdMet: Balance >= 500 Coins
+  ThresholdMet --> PayoutInitiated: Tap Cashout
+  PayoutInitiated --> LedgerView: Payment queued
+  LedgerView --> [*]

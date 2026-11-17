@@ -1,0 +1,38 @@
+{
+  "flowId": "timesheet-review-flow",
+  "title": "Timesheet Audit & Approval Flow",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Employee Weekly Timesheet Entry",
+      "action": "Employee enters daily hours across assigned project codes; clicks 'Submit'",
+      "response": "Dispatches timesheet to Supervisor Review Queue",
+      "image": "/figma/cvm-hrms/screens/timesheets/cvm-hrms-attendance-timesheet-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Manager Timesheet Review Queue",
+      "action": "Manager inspects pending team timesheets; clicks 'Review' on flagged row",
+      "response": "Opens detailed line-item inspection modal",
+      "image": "/figma/cvm-hrms/screens/timesheets/cvm-hrms-attendance-review-queue-02.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Line-Item Audit Inspection Modal",
+      "action": "Manager audits billable vs non-billable hours; chooses 'Approve' or 'Reject'",
+      "response": "Approval locks timesheet; Rejection opens Mandatory Reason Dialog",
+      "image": "/figma/cvm-hrms/screens/timesheets/cvm-hrms-timesheet-inspection-modal-details-03.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Rejection Reason Dialog",
+      "action": "Manager enters mandatory correction explanation and confirms",
+      "response": "Reverts timesheet to 'Draft' status and sends email notification to employee",
+      "image": "/figma/cvm-hrms/screens/timesheets/cvm-hrms-attendance-rejection-dialog-reason-04.jpg",
+      "nextStep": null
+    }
+  ]
+}

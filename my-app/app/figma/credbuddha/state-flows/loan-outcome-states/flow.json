@@ -1,0 +1,24 @@
+{
+  "stateFlowId": "loan-outcome-states",
+  "title": "Underwriting Outcomes",
+  "states": [
+    {
+      "state": "processing",
+      "screen": "credbuddha-application-review-pending-01.jpg",
+      "image": "/figma/credbuddha/screens/application-status/credbuddha-application-review-pending-01.jpg",
+      "trigger": "Bureau check initiated"
+    },
+    {
+      "state": "approved",
+      "screen": "credbuddha-loan-outcome-approved-01.jpg",
+      "image": "/figma/credbuddha/screens/loan-outcomes/credbuddha-loan-outcome-approved-01.jpg",
+      "trigger": "Credit score >= 750"
+    },
+    {
+      "state": "declined",
+      "screen": "credbuddha-loan-outcome-declined-02.jpg",
+      "image": "/figma/credbuddha/screens/loan-outcomes/credbuddha-loan-outcome-declined-02.jpg",
+      "trigger": "Underwriting criteria unmet"
+    }
+  ]
+}

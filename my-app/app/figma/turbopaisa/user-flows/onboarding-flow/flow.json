@@ -1,0 +1,38 @@
+{
+  "flowId": "onboarding-flow",
+  "title": "Onboarding & Localization Flow",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Splash Screen",
+      "action": "App initializes",
+      "response": "Auto-advances to value carousel",
+      "image": "/figma/turbopaisa/screens/onboarding/turbopaisa-onboarding-splash-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Value Proposition Carousel",
+      "action": "User swipes through features; taps 'Next'",
+      "response": "Opens Language Selector dialog",
+      "image": "/figma/turbopaisa/screens/onboarding/turbopaisa-onboarding-promo-carousel-hero-02.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Language Selection",
+      "action": "User selects preferred regional language",
+      "response": "Translates UI tokens and presents Login view",
+      "image": "/figma/turbopaisa/screens/onboarding/turbopaisa-onboarding-language-picker-selection-03.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Login Screen",
+      "action": "User logs in with Google One-Tap or Mobile Number",
+      "response": "Authenticates account and loads Home Dashboard",
+      "image": "/figma/turbopaisa/screens/authentication/turbopaisa-auth-login-default-01.jpg",
+      "nextStep": null
+    }
+  ]
+}

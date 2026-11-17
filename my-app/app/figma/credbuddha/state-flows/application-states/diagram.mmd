@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> ConfiguringTerms
+  ConfiguringTerms --> Step1Personal: Confirm Amount & Tenure
+  Step1Personal --> Step2Financial: Submit Valid PAN & Employment
+  Step2Financial --> UnderwritingSubmitted: Submit Bank & Income Proof
+  UnderwritingSubmitted --> [*]

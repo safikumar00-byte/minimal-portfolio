@@ -1,0 +1,38 @@
+{
+  "flowId": "asset-allocation-flow",
+  "title": "IT Asset Provisioning Flow",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Asset Inventory Dashboard",
+      "action": "IT admin reviews stock and pending hardware tickets",
+      "response": "Shows available vs assigned laptops and peripherals",
+      "image": "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-management-dashboard-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Master Asset Registry Table",
+      "action": "Admin reviews historical assignment log and warranty dates",
+      "response": "Table supports CSV export and hardware audit verification",
+      "image": "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-registry-table-default-02.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Create Asset Modal",
+      "action": "Admin registers new device serial number and specifications",
+      "response": "Adds device to available inventory pool",
+      "image": "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-create-modal-form-03.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Asset Request Review Queue",
+      "action": "Admin assigns hardware to employee request",
+      "response": "Transitions device status from In Stock to Deployed",
+      "image": "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-request-pending-review-04.jpg",
+      "nextStep": null
+    }
+  ]
+}

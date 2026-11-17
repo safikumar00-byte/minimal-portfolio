@@ -1,0 +1,24 @@
+{
+  "stateFlowId": "leave-approval-states",
+  "title": "Leave Request Decision States",
+  "states": [
+    {
+      "state": "drafting",
+      "screen": "cvm-hrms-leave-apply-request-modal-03.jpg",
+      "image": "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-apply-request-modal-03.jpg",
+      "trigger": "Opening leave dialog"
+    },
+    {
+      "state": "pending-manager",
+      "screen": "cvm-hrms-leave-approval-pending-queue-02.jpg",
+      "image": "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-approval-pending-queue-02.jpg",
+      "trigger": "Request dispatched"
+    },
+    {
+      "state": "confirmed-approved",
+      "screen": "cvm-hrms-leave-approval-confirmation-modal-04.jpg",
+      "image": "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-approval-confirmation-modal-04.jpg",
+      "trigger": "Manager approves request"
+    }
+  ]
+}

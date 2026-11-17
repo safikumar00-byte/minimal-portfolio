@@ -1,0 +1,46 @@
+{
+  "flowId": "registration-flow",
+  "title": "Registration & Identity Verification Flow",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Welcome Onboarding Splash",
+      "action": "User clicks 'Get Started'",
+      "response": "Opens Mobile Phone Login screen",
+      "image": "/figma/credbuddha/screens/onboarding/credbuddha-onboarding-welcome-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Phone Number Login",
+      "action": "User enters 10-digit phone number and submits",
+      "response": "Dispatches SMS OTP; transitions to verification view",
+      "image": "/figma/credbuddha/screens/authentication/credbuddha-auth-phone-login-default-01.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "SMS OTP Verification",
+      "action": "User inputs received 6-digit OTP",
+      "response": "Validates code with auth gateway; creates user session",
+      "image": "/figma/credbuddha/screens/authentication/credbuddha-auth-otp-verification-default-02.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Create Profile Form",
+      "action": "User inputs legal name, DOB, and email address",
+      "response": "Creates borrower account; renders confirmation modal",
+      "image": "/figma/credbuddha/screens/registration/credbuddha-registration-profile-create-default-01.jpg",
+      "nextStep": 5
+    },
+    {
+      "step": 5,
+      "title": "Registration Confirmed",
+      "action": "User taps 'Explore Offers'",
+      "response": "Transitions directly to Home Discovery feed",
+      "image": "/figma/credbuddha/screens/registration/credbuddha-registration-success-confirmed-02.jpg",
+      "nextStep": null
+    }
+  ]
+}

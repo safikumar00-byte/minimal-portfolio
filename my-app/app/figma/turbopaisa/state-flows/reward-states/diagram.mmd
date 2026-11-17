@@ -1,0 +1,7 @@
+stateDiagram-v2
+  [*] --> Unscratched
+  Unscratched --> Scratched: Touch drag gesture
+  Scratched --> SpinningWheel: Tap Spin Multiplier
+  SpinningWheel --> CelebrationModal: Sector match
+  CelebrationModal --> Claimed: Tap Claim
+  Claimed --> [*]

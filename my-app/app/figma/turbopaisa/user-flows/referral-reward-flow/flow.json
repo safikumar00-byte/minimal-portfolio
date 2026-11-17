@@ -1,0 +1,22 @@
+{
+  "flowId": "referral-reward-flow",
+  "title": "Referral & WhatsApp Viral Loop",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Refer & Earn Hub",
+      "action": "User taps 'Share on WhatsApp'",
+      "response": "Opens step-by-step WhatsApp invite tutorial",
+      "image": "/figma/turbopaisa/screens/referrals/turbopaisa-referrals-invite-hub-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "WhatsApp Share Step-by-Step",
+      "action": "User selects WhatsApp contact; sends deep-link invitation",
+      "response": "Friend installs app; bonus coins automatically unlock for both",
+      "image": "/figma/turbopaisa/screens/referrals/turbopaisa-referrals-whatsapp-share-tutorial-02.jpg",
+      "nextStep": null
+    }
+  ]
+}

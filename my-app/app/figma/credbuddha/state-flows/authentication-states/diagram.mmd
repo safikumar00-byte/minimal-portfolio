@@ -1,0 +1,7 @@
+stateDiagram-v2
+  [*] --> Unauthenticated
+  Unauthenticated --> PhoneInput: User clicks Get Started
+  PhoneInput --> OTPValidating: Valid phone number submitted
+  OTPValidating --> PhoneInput: OTP timeout / Change number
+  OTPValidating --> Authenticated: 6-digit OTP verified
+  Authenticated --> [*]

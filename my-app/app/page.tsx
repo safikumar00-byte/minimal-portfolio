@@ -15,11 +15,11 @@ import {
   cvmHrmProject,
   turboPaisaProject,
 } from "@/lib/phone-projects";
-import LiquidGraphicGallery from "@/components/liquid-graphic-gallery";
 import InfiniteGraphicGallery from "@/components/infinite-graphic-gallery"
 import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
 import EditorialRulerGrid from "@/components/portfolio/EditorialRulerGrid";
 import PortfolioPreloader from "@/components/portfolio/PortfolioPreloader";
+import PageTransition from "@/components/page-transition";
 
 type Category = "design" | "development";
 type PreviewKind =
@@ -111,7 +111,6 @@ const projects: ProjectItem[] = [
 function ProjectPreview({ project }: { project: ProjectItem }) {
   const { preview: kind } = project;
   if (kind === "liquid-carousel") {
-    // return <LiquidGraphicGallery />;
     return <InfiniteGraphicGallery />;
   }
 
@@ -217,7 +216,7 @@ export default function Home() {
       : projects.filter((project) => project.categories.includes(filter));
 
   return (
-    <>
+    <PageTransition>
       <PortfolioPreloader onComplete={handlePreloadComplete} />
       <div
         className={`portfolio-shell transition-opacity duration-500 ease-out ${isPreloaded ? "opacity-100" : "opacity-95"
@@ -320,6 +319,6 @@ export default function Home() {
           </section>
           </main>
       </div>
-    </>
+    </PageTransition>
   );
 }

@@ -55,7 +55,7 @@ export function RouteTransitionProvider({
       updatePhase("idle");
       enterTimer.current = null;
     }, ENTER_DURATION);
-  }, [pathname, clearTimer, updatePhase, clearTimer]);
+  }, [pathname, clearTimer, updatePhase]);
 
   React.useEffect(() => {
     const handlePopState = () => {

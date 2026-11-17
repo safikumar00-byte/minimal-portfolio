@@ -1,0 +1,24 @@
+{
+  "stateFlowId": "employee-states",
+  "title": "Employee Lifecycle States",
+  "states": [
+    {
+      "state": "onboarding-new",
+      "screen": "cvm-hrms-employees-add-dialog-open-03.jpg",
+      "image": "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-employees-add-dialog-open-03.jpg",
+      "trigger": "Candidate added"
+    },
+    {
+      "state": "in-progress",
+      "screen": "cvm-hrms-onboarding-progress-tracker-details-05.jpg",
+      "image": "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-progress-tracker-details-05.jpg",
+      "trigger": "Orientation documents pending"
+    },
+    {
+      "state": "active",
+      "screen": "cvm-hrms-employee-profile-overview-default-01.jpg",
+      "image": "/figma/cvm-hrms/screens/employee-profile/cvm-hrms-employee-profile-overview-default-01.jpg",
+      "trigger": "All checklist items verified"
+    }
+  ]
+}

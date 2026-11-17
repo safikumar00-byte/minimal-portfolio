@@ -1,0 +1,8 @@
+stateDiagram-v2
+  [*] --> InventoryAvailable
+  InventoryAvailable --> RequestReview: Employee submits hardware request
+  RequestReview --> Deployed: Admin tags and assigns device
+  Deployed --> InMaintenance: Fault reported
+  InMaintenance --> Deployed: Repaired
+  Deployed --> Retired: End of life
+  Retired --> [*]

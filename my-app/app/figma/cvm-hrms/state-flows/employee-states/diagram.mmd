@@ -1,0 +1,7 @@
+stateDiagram-v2
+  [*] --> OnboardingNew
+  OnboardingNew --> InProgress: Profile created
+  InProgress --> Active: Checklist 100% complete
+  Active --> OnLeave: Approved leave date reached
+  OnLeave --> Active: Return to work
+  Active --> [*]

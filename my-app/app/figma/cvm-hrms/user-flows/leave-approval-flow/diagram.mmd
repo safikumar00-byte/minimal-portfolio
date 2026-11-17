@@ -1,0 +1,5 @@
+flowchart TD
+  A[Leave Dashboard] -->|Click 'Apply Leave'| B[Leave Form Modal]
+  B -->|Submit Request| C[Supervisor Approval Queue]
+  C -->|Evaluate Coverage| D[Confirm Approval Modal]
+  D -->|Deduct Balance| E[Calendar Updated & Approved Notification]

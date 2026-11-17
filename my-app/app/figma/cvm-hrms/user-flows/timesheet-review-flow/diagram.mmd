@@ -1,0 +1,6 @@
+flowchart TD
+  A[Employee Enters Weekly Hours] -->|Submit Timesheet| B[Manager Review Queue]
+  B -->|Click Row| C[Detailed Inspection Modal]
+  C -->|Hours Verified| D[Approved & Locked for Payroll]
+  C -->|Hours Discrepant| E[Rejection Reason Dialog]
+  E -->|Submit Feedback| F[Reverted to Draft for Employee Edit]

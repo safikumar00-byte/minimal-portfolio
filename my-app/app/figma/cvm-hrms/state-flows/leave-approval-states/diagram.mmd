@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> Drafting
+  Drafting --> PendingManager: Form submitted
+  PendingManager --> ConfirmedApproved: Manager approves
+  PendingManager --> Rejected: Insufficient staffing
+  ConfirmedApproved --> [*]

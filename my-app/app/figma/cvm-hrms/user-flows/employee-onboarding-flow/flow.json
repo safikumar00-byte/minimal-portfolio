@@ -1,0 +1,46 @@
+{
+  "flowId": "employee-onboarding-flow",
+  "title": "Employee Onboarding & Lifecycle Setup",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Executive HR Dashboard",
+      "action": "HR Manager clicks 'Onboarding Pipeline' quick action",
+      "response": "Opens cohort management dashboard",
+      "image": "/figma/cvm-hrms/screens/dashboard/cvm-hrms-dashboard-overview-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Onboarding Cohort Hub",
+      "action": "HR taps 'Add Employee' button",
+      "response": "Renders multi-step candidate creation modal",
+      "image": "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-cohort-dashboard-default-01.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Add Employee Form Dialog",
+      "action": "HR inputs employee name, role, department, and start date",
+      "response": "Saves record and initializes automated orientation workflow",
+      "image": "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-employees-add-dialog-open-03.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Milestone Orientation Checklist",
+      "action": "HR tracks orientation, security training, and documentation milestones",
+      "response": "Updates completion percentage in real time",
+      "image": "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-milestone-checklist-progress-04.jpg",
+      "nextStep": 5
+    },
+    {
+      "step": 5,
+      "title": "Onboarding Progress Details Modal",
+      "action": "Manager verifies completion and opens final active review",
+      "response": "Transitions candidate to Active Employee status in Directory Roster",
+      "image": "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-progress-tracker-details-05.jpg",
+      "nextStep": null
+    }
+  ]
+}

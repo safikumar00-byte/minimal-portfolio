@@ -1,0 +1,30 @@
+{
+  "stateFlowId": "application-states",
+  "title": "Application Stepper States",
+  "states": [
+    {
+      "state": "configuring-terms",
+      "screen": "credbuddha-loan-application-terms-selection-default-01.jpg",
+      "image": "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-terms-selection-default-01.jpg",
+      "trigger": "Select Loan Offer"
+    },
+    {
+      "state": "step-1-personal",
+      "screen": "credbuddha-loan-application-personal-details-step-02.jpg",
+      "image": "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-personal-details-step-02.jpg",
+      "trigger": "Confirm Amount"
+    },
+    {
+      "state": "step-2-financial",
+      "screen": "credbuddha-loan-application-kyc-verification-step-03.jpg",
+      "image": "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-kyc-verification-step-03.jpg",
+      "trigger": "PAN Validated"
+    },
+    {
+      "state": "underwriting-submitted",
+      "screen": "credbuddha-application-review-pending-01.jpg",
+      "image": "/figma/credbuddha/screens/application-status/credbuddha-application-review-pending-01.jpg",
+      "trigger": "Bank Details Submitted"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> UnderwritingProcessing
+  UnderwritingProcessing --> LoanApproved: Risk score passes threshold
+  UnderwritingProcessing --> LoanDeclined: High debt-to-income or low bureau score
+  LoanApproved --> DisbursalInitiated
+  LoanDeclined --> AlternativeOffers

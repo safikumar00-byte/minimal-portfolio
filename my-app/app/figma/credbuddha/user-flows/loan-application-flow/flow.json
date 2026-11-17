@@ -1,0 +1,46 @@
+{
+  "flowId": "loan-application-flow",
+  "title": "Personal Loan Application & Decision Flow",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Loan Terms & Tenure Selection",
+      "action": "User adjusts desired amount slider and repayment tenure",
+      "response": "Calculates monthly EMI and prompts 'Apply Now'",
+      "image": "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-terms-selection-default-01.jpg",
+      "nextStep": 2
+    },
+    {
+      "step": 2,
+      "title": "Step 1: PAN & Employment Information",
+      "action": "User enters PAN card, work status, and employer details",
+      "response": "Validates PAN format via NSDL API; advances to Step 2",
+      "image": "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-personal-details-step-02.jpg",
+      "nextStep": 3
+    },
+    {
+      "step": 3,
+      "title": "Step 2: Financial KYC & Bank Account",
+      "action": "User provides monthly income and salary bank IFSC details",
+      "response": "Dispatches encrypted payload to underwriting engine",
+      "image": "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-kyc-verification-step-03.jpg",
+      "nextStep": 4
+    },
+    {
+      "step": 4,
+      "title": "Automated Underwriting Review Queue",
+      "action": "System executes algorithmic risk assessment and bureau check",
+      "response": "Routes user to either Approved or Declined outcome state",
+      "image": "/figma/credbuddha/screens/application-status/credbuddha-application-review-pending-01.jpg",
+      "nextStep": 5
+    },
+    {
+      "step": 5,
+      "title": "Outcome Decision",
+      "action": "Presents decision: ₹1,50,000 Sanctioned or Declined with alternatives",
+      "response": "Borrower accepts disbursement or views credit-building options",
+      "image": "/figma/credbuddha/screens/loan-outcomes/credbuddha-loan-outcome-approved-01.jpg",
+      "nextStep": null
+    }
+  ]
+}
