@@ -22,6 +22,7 @@ export type CaseStudyLayoutProps = {
   status?: string;
   figmaUrl?: string;
   navItems: SectionNavItem[];
+  navTitle?: string;
   children: React.ReactNode;
   className?: string;
 };
@@ -34,6 +35,7 @@ export default function CaseStudyLayout({
   status,
   figmaUrl,
   navItems = [],
+  navTitle,
   children,
   className = "",
 }: CaseStudyLayoutProps) {
@@ -72,7 +74,7 @@ export default function CaseStudyLayout({
 
         {/* COLUMN 3: Right Sticky Section Navigation Rail */}
         <aside className="lg:sticky lg:top-28 w-full flex justify-end">
-          <ProjectSectionNavigation items={navItems} />
+          <ProjectSectionNavigation items={navItems} title={navTitle} />
         </aside>
       </div>
     </div>

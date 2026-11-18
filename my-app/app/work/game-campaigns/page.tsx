@@ -56,21 +56,21 @@ const RELATED_PROJECTS: RelatedProjectItem[] = [
     title: "TurboPaisa",
     href: "/work/turbopaisa",
     thumbnailSrc:
-      "/work/turbopaisa/turbopaisa-home-rewards-dashboard-default-01.jpg",
+      "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
     thumbnailAlt: "TurboPaisa mobile app home screen",
   },
   {
     title: "CredBuddha",
     href: "/work/credbuddha",
     thumbnailSrc:
-      "/work/credbuddha/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
+      "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
     thumbnailAlt: "CredBuddha mobile app home screen",
   },
   {
     title: "Core Volt Matrix",
     href: "/work/cvm-hrm",
     thumbnailSrc:
-      "/work/cvm-hrm/cvm-hrms-dashboard-overview-default-01.jpg",
+      "/figma/cvm-hrms/screens/dashboard/cvm-hrms-dashboard-overview-default-01.jpg",
     thumbnailAlt: "Core Volt Matrix HRMS dashboard",
   },
 ];

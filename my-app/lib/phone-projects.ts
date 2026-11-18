@@ -38,6 +38,8 @@ export type CaseStudyOverview = {
   tools?: string[];
   liveUrl?: string;
   figmaUrl?: string;
+  figmaEmbedUrl?: string;
+  figmaSourceUrl?: string;
 };
 
 export type CaseStudySectionItem = {
@@ -60,6 +62,8 @@ export type PhoneProject = {
   tools?: string[];
   liveUrl?: string;
   figmaUrl?: string;
+  figmaEmbedUrl?: string;
+  figmaSourceUrl?: string;
   overview: string;
   overviewData?: CaseStudyOverview;
   focusAreas: string[];
@@ -105,6 +109,10 @@ export const credBuddhaProject: PhoneProject = {
   tools: ["Figma", "Design Systems", "Prototyping", "User Research"],
   figmaUrl:
     "https://www.figma.com/design/L03mwtiwKeLRPx8Ti7SF02/Credbuddha-v-2--Copy-?node-id=102-45&p=f",
+  figmaSourceUrl:
+    "https://www.figma.com/design/L03mwtiwKeLRPx8Ti7SF02/Credbuddha-v-2--Copy-?node-id=102-45&p=f",
+  figmaEmbedUrl:
+    "https://embed.figma.com/design/L03mwtiwKeLRPx8Ti7SF02/Credbuddha-v-2--Copy-?node-id=102-45&embed-host=share",
   overview:
     "The provided screens cover a loan-discovery journey from the home screen and pre-approved offers into a multi-step application. Separate pending, approved, and rejected states communicate that an application is reviewed after submission.",
   overviewData: {
@@ -118,6 +126,10 @@ export const credBuddhaProject: PhoneProject = {
     tools: ["Figma", "Design Systems", "Prototyping", "User Research"],
     figmaUrl:
       "https://www.figma.com/design/L03mwtiwKeLRPx8Ti7SF02/Credbuddha-v-2--Copy-?node-id=102-45&p=f",
+    figmaSourceUrl:
+      "https://www.figma.com/design/L03mwtiwKeLRPx8Ti7SF02/Credbuddha-v-2--Copy-?node-id=102-45&p=f",
+    figmaEmbedUrl:
+      "https://embed.figma.com/design/L03mwtiwKeLRPx8Ti7SF02/Credbuddha-v-2--Copy-?node-id=102-45&embed-host=share",
   },
   highlights: [
     {
@@ -146,7 +158,7 @@ export const credBuddhaProject: PhoneProject = {
           description:
             "Borrower discovers partner offers with transparent rates, loan tenures, and monthly EMI estimates.",
           action: "Select loan card from curated list",
-          screenSrc: "/work/credbuddha/credbuddha-loan-discovery-offers-default-02.jpg",
+          screenSrc: "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-offers-default-02.jpg",
           screenAlt: "CredBuddha list of pre-approved loan offers",
         },
         {
@@ -155,7 +167,7 @@ export const credBuddhaProject: PhoneProject = {
           description:
             "Contextual breakdown explaining required paperwork, tenure sliders, and repayment policies before starting.",
           action: "Tap 'Apply Now' to initiate application",
-          screenSrc: "/work/credbuddha/credbuddha-loan-application-terms-selection-default-01.jpg",
+          screenSrc: "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-terms-selection-default-01.jpg",
           screenAlt: "CredBuddha apply-for-a-loan introduction screen",
         },
         {
@@ -164,7 +176,7 @@ export const credBuddhaProject: PhoneProject = {
           description:
             "User provides requested loan amount, full legal name, phone number, and primary employment type.",
           action: "Fill basic details & submit step 1",
-          screenSrc: "/work/credbuddha/credbuddha-loan-application-personal-details-step-02.jpg",
+          screenSrc: "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-personal-details-step-02.jpg",
           screenAlt: "CredBuddha application details form step 1",
         },
         {
@@ -173,7 +185,7 @@ export const credBuddhaProject: PhoneProject = {
           description:
             "Collection of PAN number, address, and pincode required for automated credit bureau validation.",
           action: "Complete KYC verification & submit",
-          screenSrc: "/work/credbuddha/credbuddha-loan-application-kyc-verification-step-03.jpg",
+          screenSrc: "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-kyc-verification-step-03.jpg",
           screenAlt: "CredBuddha application details form step 2",
         },
         {
@@ -184,7 +196,7 @@ export const credBuddhaProject: PhoneProject = {
           action: "System triggers bureau underwriting",
           decisionPoint: "Automated credit score check threshold",
           outcome: "Transitions to Pending Verification or Alternative Offers",
-          screenSrc: "/work/credbuddha/credbuddha-application-review-pending-01.jpg",
+          screenSrc: "/figma/credbuddha/screens/application-status/credbuddha-application-review-pending-01.jpg",
           screenAlt: "CredBuddha pending review status screen",
         },
       ],
@@ -201,7 +213,7 @@ export const credBuddhaProject: PhoneProject = {
           description:
             "Illustrated brand introduction outlining loan comparison benefits and safety guarantees.",
           action: "Tap 'Get Started'",
-          screenSrc: "/work/credbuddha/credbuddha-onboarding-welcome-default-01.jpg",
+          screenSrc: "/figma/credbuddha/screens/onboarding/credbuddha-onboarding-welcome-default-01.jpg",
           screenAlt: "CredBuddha onboarding welcome screen",
         },
         {
@@ -210,7 +222,7 @@ export const credBuddhaProject: PhoneProject = {
           description:
             "Minimalist phone number input designed for instant numeric entry.",
           action: "Enter phone number & request OTP",
-          screenSrc: "/work/credbuddha/credbuddha-auth-phone-login-default-01.jpg",
+          screenSrc: "/figma/credbuddha/screens/authentication/credbuddha-auth-phone-login-default-01.jpg",
           screenAlt: "CredBuddha sign in screen",
         },
         {
@@ -219,7 +231,7 @@ export const credBuddhaProject: PhoneProject = {
           description:
             "4-digit verification code screen with automatic focus movement and clear resend timer.",
           action: "Submit SMS code",
-          screenSrc: "/work/credbuddha/credbuddha-auth-otp-verification-default-02.jpg",
+          screenSrc: "/figma/credbuddha/screens/authentication/credbuddha-auth-otp-verification-default-02.jpg",
           screenAlt: "CredBuddha OTP verification screen",
         },
         {
@@ -229,7 +241,7 @@ export const credBuddhaProject: PhoneProject = {
             "Celebratory confirmation modal confirming profile creation and establishing immediate trust.",
           action: "Continue to personalized feed",
           outcome: "Redirects directly to active Home Screen",
-          screenSrc: "/work/credbuddha/credbuddha-registration-success-confirmed-02.jpg",
+          screenSrc: "/figma/credbuddha/screens/registration/credbuddha-registration-success-confirmed-02.jpg",
           screenAlt: "CredBuddha account creation success screen",
         },
       ],
@@ -249,7 +261,7 @@ export const credBuddhaProject: PhoneProject = {
           userAction: "Wait for background underwriting checks",
           behavior:
             "Displays active review animation, 24-hour SLA promise, and direct access to customer support chat.",
-          screenSrc: "/work/credbuddha/credbuddha-application-review-pending-01.jpg",
+          screenSrc: "/figma/credbuddha/screens/application-status/credbuddha-application-review-pending-01.jpg",
           screenAlt: "Pending review state screen",
         },
         {
@@ -259,7 +271,7 @@ export const credBuddhaProject: PhoneProject = {
           userAction: "Review final loan contract & sign electronically",
           behavior:
             "Renders green success banner, approved amount, net disbursal date, and download agreement action.",
-          screenSrc: "/work/credbuddha/credbuddha-loan-outcome-approved-01.jpg",
+          screenSrc: "/figma/credbuddha/screens/loan-outcomes/credbuddha-loan-outcome-approved-01.jpg",
           screenAlt: "Loan approved celebration screen",
         },
         {
@@ -269,7 +281,7 @@ export const credBuddhaProject: PhoneProject = {
           userAction: "Explore alternative partner recommendations",
           behavior:
             "Replaces dead-end rejection with constructive credit-builder cards and curated micro-loan alternatives.",
-          screenSrc: "/work/credbuddha/credbuddha-loan-outcome-declined-02.jpg",
+          screenSrc: "/figma/credbuddha/screens/loan-outcomes/credbuddha-loan-outcome-declined-02.jpg",
           screenAlt: "Loan rejected with alternative offers screen",
         },
       ],
@@ -291,17 +303,17 @@ export const credBuddhaProject: PhoneProject = {
             "Core applicant journey: discovering eligible loans, selecting terms, and completing details.",
           images: [
             {
-              src: "/work/credbuddha/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
+              src: "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
               alt: "CredBuddha home screen with loan categories and offers",
               title: "Home & categories",
             },
             {
-              src: "/work/credbuddha/credbuddha-loan-application-terms-selection-default-01.jpg",
+              src: "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-terms-selection-default-01.jpg",
               alt: "CredBuddha apply-for-a-loan introduction screen",
               title: "Apply for a loan",
             },
             {
-              src: "/work/credbuddha/credbuddha-loan-application-personal-details-step-02.jpg",
+              src: "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-personal-details-step-02.jpg",
               alt: "CredBuddha first step of the loan application details form",
               title: "Application details",
             },
@@ -321,12 +333,12 @@ export const credBuddhaProject: PhoneProject = {
             "Application status clarity and instant secondary offer discovery.",
           images: [
             {
-              src: "/work/credbuddha/credbuddha-application-review-pending-01.jpg",
+              src: "/figma/credbuddha/screens/application-status/credbuddha-application-review-pending-01.jpg",
               alt: "CredBuddha loan application pending review screen",
               title: "Pending review state",
             },
             {
-              src: "/work/credbuddha/credbuddha-loan-discovery-offers-default-02.jpg",
+              src: "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-offers-default-02.jpg",
               alt: "CredBuddha list of pre-approved loan offers",
               title: "Pre-approved offers",
             },
@@ -358,27 +370,27 @@ export const credBuddhaProject: PhoneProject = {
   ],
   images: [
     {
-      src: "/work/credbuddha/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
+      src: "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
       alt: "CredBuddha home screen with loan categories and offers",
       title: "Home",
     },
     {
-      src: "/work/credbuddha/credbuddha-loan-discovery-offers-default-02.jpg",
+      src: "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-offers-default-02.jpg",
       alt: "CredBuddha list of pre-approved loan offers",
       title: "Loan offers",
     },
     {
-      src: "/work/credbuddha/credbuddha-loan-application-terms-selection-default-01.jpg",
+      src: "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-terms-selection-default-01.jpg",
       alt: "CredBuddha apply-for-a-loan introduction screen",
       title: "Apply for a loan",
     },
     {
-      src: "/work/credbuddha/credbuddha-loan-application-personal-details-step-02.jpg",
+      src: "/figma/credbuddha/screens/loan-application/credbuddha-loan-application-personal-details-step-02.jpg",
       alt: "CredBuddha first step of the loan application details form",
       title: "Application details",
     },
     {
-      src: "/work/credbuddha/credbuddha-application-review-pending-01.jpg",
+      src: "/figma/credbuddha/screens/application-status/credbuddha-application-review-pending-01.jpg",
       alt: "CredBuddha loan application pending review screen",
       title: "Application status",
     },
@@ -406,6 +418,10 @@ export const turboPaisaProject: PhoneProject = {
   tools: ["Figma", "React Native", "Tailwind CSS", "Motion Design"],
   figmaUrl:
     "https://www.figma.com/design/HvtFw171Xxz7oVaqDQHIGC/TurboPaisa-Mobile-App--Copy-?node-id=0-1&p=f",
+  figmaSourceUrl:
+    "https://www.figma.com/design/HvtFw171Xxz7oVaqDQHIGC/TurboPaisa-Mobile-App--Copy-?node-id=0-1&p=f",
+  figmaEmbedUrl:
+    "https://embed.figma.com/design/HvtFw171Xxz7oVaqDQHIGC/TurboPaisa-Mobile-App--Copy-?node-id=0-1&embed-host=share",
   overview:
     "The supplied screens show a colorful mobile product organized around earning opportunities. The home screen brings together tasks, scratch cards, quizzes, games, and offers, while wallet and referral screens support the account journey.",
   overviewData: {
@@ -419,6 +435,10 @@ export const turboPaisaProject: PhoneProject = {
     tools: ["Figma", "React Native", "Tailwind CSS", "Design Systems"],
     figmaUrl:
       "https://www.figma.com/design/HvtFw171Xxz7oVaqDQHIGC/TurboPaisa-Mobile-App--Copy-?node-id=0-1&p=f",
+    figmaSourceUrl:
+      "https://www.figma.com/design/HvtFw171Xxz7oVaqDQHIGC/TurboPaisa-Mobile-App--Copy-?node-id=0-1&p=f",
+    figmaEmbedUrl:
+      "https://embed.figma.com/design/HvtFw171Xxz7oVaqDQHIGC/TurboPaisa-Mobile-App--Copy-?node-id=0-1&embed-host=share",
   },
   highlights: [
     {
@@ -447,7 +467,7 @@ export const turboPaisaProject: PhoneProject = {
           description:
             "Browse active earning modes: scratch cards, bonus wheel spins, daily quizzes, and sponsored partner tasks.",
           action: "Tap 'Scratch Card' card",
-          screenSrc: "/work/turbopaisa/turbopaisa-home-rewards-dashboard-default-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
           screenAlt: "TurboPaisa home screen with earning activities",
         },
         {
@@ -457,7 +477,7 @@ export const turboPaisaProject: PhoneProject = {
             "Tactile finger-swipe gesture scrubs away metallic overlay with physics-based confetti feedback.",
           action: "Scratch screen overlay",
           outcome: "Reveals coin reward value",
-          screenSrc: "/work/turbopaisa/turbopaisa-tasks-scratch-card-ready-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/scratch-cards/turbopaisa-tasks-scratch-card-ready-01.jpg",
           screenAlt: "TurboPaisa scratch card rewards screen",
         },
         {
@@ -466,7 +486,7 @@ export const turboPaisaProject: PhoneProject = {
           description:
             "Interactive fortune wheel offering bonus multipliers and consecutive login streaks.",
           action: "Spin the wheel",
-          screenSrc: "/work/turbopaisa/turbopaisa-games-spin-wheel-default-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/spin-wheel/turbopaisa-games-spin-wheel-default-01.jpg",
           screenAlt: "TurboPaisa spin game screen",
         },
         {
@@ -476,7 +496,7 @@ export const turboPaisaProject: PhoneProject = {
             "Instant modal confirming points credited to wallet balance with immediate claim CTA.",
           action: "Tap 'Collect Points'",
           outcome: "Points immediately reflect in top navigation balance",
-          screenSrc: "/work/turbopaisa/turbopaisa-games-spin-result-celebration-02.jpg",
+          screenSrc: "/figma/turbopaisa/screens/spin-wheel/turbopaisa-games-spin-result-celebration-02.jpg",
           screenAlt: "TurboPaisa spin reward popup",
         },
       ],
@@ -493,7 +513,7 @@ export const turboPaisaProject: PhoneProject = {
           description:
             "Check current point balance, rupee equivalent, withdrawal thresholds, and recent transaction entries.",
           action: "Tap 'Withdraw Funds'",
-          screenSrc: "/work/turbopaisa/turbopaisa-wallet-balance-default-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/wallet/turbopaisa-wallet-balance-default-01.jpg",
           screenAlt: "TurboPaisa wallet balance screen",
         },
         {
@@ -502,7 +522,7 @@ export const turboPaisaProject: PhoneProject = {
           description:
             "Provide beneficiary details, bank account number, and IFSC code for direct IMPS deposit.",
           action: "Input payment destination & submit",
-          screenSrc: "/work/turbopaisa/turbopaisa-wallet-withdrawal-details-payout-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/withdrawals/turbopaisa-wallet-withdrawal-details-payout-01.jpg",
           screenAlt: "TurboPaisa bank details input screen",
         },
         {
@@ -512,7 +532,7 @@ export const turboPaisaProject: PhoneProject = {
             "Real-time ledger verifying payout status, transaction ID, and banking transfer confirmation.",
           action: "Review transaction confirmation",
           outcome: "Direct bank transfer credited to account",
-          screenSrc: "/work/turbopaisa/turbopaisa-wallet-transaction-history-ledger-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/transactions/turbopaisa-wallet-transaction-history-ledger-01.jpg",
           screenAlt: "TurboPaisa transaction history screen",
         },
       ],
@@ -532,7 +552,7 @@ export const turboPaisaProject: PhoneProject = {
           userAction: "Review eligible payout thresholds",
           behavior:
             "Shows active points balance, conversion rate (1000 pts = ₹10), and available voucher options.",
-          screenSrc: "/work/turbopaisa/turbopaisa-wallet-balance-default-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/wallet/turbopaisa-wallet-balance-default-01.jpg",
           screenAlt: "Active wallet balance screen",
         },
         {
@@ -542,7 +562,7 @@ export const turboPaisaProject: PhoneProject = {
           userAction: "Wait for banking gateway clearance",
           behavior:
             "Locks deducted points, displays transfer reference ID, and sets expected 2-hour SLA badge.",
-          screenSrc: "/work/turbopaisa/turbopaisa-wallet-withdrawal-details-payout-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/withdrawals/turbopaisa-wallet-withdrawal-details-payout-01.jpg",
           screenAlt: "Withdrawal pending processing screen",
         },
         {
@@ -552,7 +572,7 @@ export const turboPaisaProject: PhoneProject = {
           userAction: "Receive push notification and receipt",
           behavior:
             "Updates transaction ledger to green 'Settled' state with downloadable payout voucher.",
-          screenSrc: "/work/turbopaisa/turbopaisa-wallet-transaction-history-ledger-01.jpg",
+          screenSrc: "/figma/turbopaisa/screens/transactions/turbopaisa-wallet-transaction-history-ledger-01.jpg",
           screenAlt: "Settled transaction history screen",
         },
       ],
@@ -574,17 +594,17 @@ export const turboPaisaProject: PhoneProject = {
             "Core retention loop: home activity feed, tactile scratch card reveal, and instant wallet balance.",
           images: [
             {
-              src: "/work/turbopaisa/turbopaisa-home-rewards-dashboard-default-01.jpg",
+              src: "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
               alt: "TurboPaisa home screen with earning activities and offers",
               title: "Home & feed",
             },
             {
-              src: "/work/turbopaisa/turbopaisa-tasks-scratch-card-ready-01.jpg",
+              src: "/figma/turbopaisa/screens/scratch-cards/turbopaisa-tasks-scratch-card-ready-01.jpg",
               alt: "TurboPaisa scratch-card rewards screen",
               title: "Scratch cards",
             },
             {
-              src: "/work/turbopaisa/turbopaisa-wallet-balance-default-01.jpg",
+              src: "/figma/turbopaisa/screens/wallet/turbopaisa-wallet-balance-default-01.jpg",
               alt: "TurboPaisa wallet showing points and recent transactions",
               title: "Points wallet",
             },
@@ -604,12 +624,12 @@ export const turboPaisaProject: PhoneProject = {
             "Transparent accounting: real-time referral ledger and verified transaction records.",
           images: [
             {
-              src: "/work/turbopaisa/turbopaisa-referrals-invite-hub-default-01.jpg",
+              src: "/figma/turbopaisa/screens/referrals/turbopaisa-referrals-invite-hub-default-01.jpg",
               alt: "TurboPaisa refer-and-earn screen",
               title: "Referral hub",
             },
             {
-              src: "/work/turbopaisa/turbopaisa-wallet-transaction-history-ledger-01.jpg",
+              src: "/figma/turbopaisa/screens/transactions/turbopaisa-wallet-transaction-history-ledger-01.jpg",
               alt: "TurboPaisa points and payout history",
               title: "Transaction history",
             },
@@ -641,22 +661,22 @@ export const turboPaisaProject: PhoneProject = {
   ],
   images: [
     {
-      src: "/work/turbopaisa/turbopaisa-home-rewards-dashboard-default-01.jpg",
+      src: "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
       alt: "TurboPaisa home screen with earning activities and offers",
       title: "Home & offers",
     },
     {
-      src: "/work/turbopaisa/turbopaisa-wallet-balance-default-01.jpg",
+      src: "/figma/turbopaisa/screens/wallet/turbopaisa-wallet-balance-default-01.jpg",
       alt: "TurboPaisa wallet showing points and recent transactions",
       title: "Points wallet",
     },
     {
-      src: "/work/turbopaisa/turbopaisa-tasks-scratch-card-ready-01.jpg",
+      src: "/figma/turbopaisa/screens/scratch-cards/turbopaisa-tasks-scratch-card-ready-01.jpg",
       alt: "TurboPaisa scratch-card rewards screen",
       title: "Scratch cards",
     },
     {
-      src: "/work/turbopaisa/turbopaisa-referrals-invite-hub-default-01.jpg",
+      src: "/figma/turbopaisa/screens/referrals/turbopaisa-referrals-invite-hub-default-01.jpg",
       alt: "TurboPaisa refer-and-earn screen",
       title: "Refer & earn",
     },
@@ -682,8 +702,10 @@ export const cvmHrmProject: PhoneProject = {
   role: "Lead Product Designer & Frontend Developer",
   timeline: "Enterprise rollout · 2024–2025",
   tools: ["React.js", "Tailwind CSS", "Figma", "Enterprise Design Systems"],
-  figmaUrl:
-    "https://www.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318&p=f",
+  figmaUrl: "https://www.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318",
+  figmaSourceUrl: "https://www.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318",
+  figmaEmbedUrl:
+    "https://embed.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318&embed-host=share",
   overview:
     "The supplied screens show a comprehensive desktop portal designed for both employees and HR administrators. Built with a persistent navigation rail, global search, and clean data tables, the system streamlines everyday tasks—such as clocking attendance and requesting leave—while equipping HR teams with structured workflows for employee onboarding, asset tracking, and company announcements.",
   overviewData: {
@@ -696,7 +718,11 @@ export const cvmHrmProject: PhoneProject = {
     timeline: "2024–2025",
     tools: ["React.js", "Tailwind CSS", "Figma", "Enterprise Design Systems"],
     figmaUrl:
-      "https://www.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318&p=f",
+      "https://www.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318",
+    figmaSourceUrl:
+      "https://www.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318",
+    figmaEmbedUrl:
+      "https://embed.figma.com/design/QHz9fHEgbZqwUJKJR6N8ab/CVM-HRM?node-id=374-16318&embed-host=share",
   },
   highlights: [
     {
@@ -725,7 +751,7 @@ export const cvmHrmProject: PhoneProject = {
           description:
             "Admin overview tracking incoming hires, pending document reviews, and induction stage percentages.",
           action: "Click '+ Add Employee' action button",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-onboarding-cohort-dashboard-default-01.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-cohort-dashboard-default-01.jpg",
           screenAlt: "CVM HRM onboarding dashboard",
         },
         {
@@ -734,7 +760,7 @@ export const cvmHrmProject: PhoneProject = {
           description:
             "Structured modal form capturing personal information, role title, department, reporting manager, and salary grade.",
           action: "Complete fields & assign onboarding cohort",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-employees-add-dialog-open-03.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-employees-add-dialog-open-03.jpg",
           screenAlt: "CVM HRM add employee dialog",
         },
         {
@@ -743,7 +769,7 @@ export const cvmHrmProject: PhoneProject = {
           description:
             "Multi-stage tracker monitoring background checks, contract signatures, security badges, and training modules.",
           action: "Inspect employee verification checklist",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-onboarding-milestone-checklist-progress-04.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-milestone-checklist-progress-04.jpg",
           screenAlt: "CVM HRM onboarding milestone list",
         },
         {
@@ -753,7 +779,7 @@ export const cvmHrmProject: PhoneProject = {
             "Direct handoff to IT inventory module to check out laptop, monitor, and peripherals with serial tracking.",
           action: "Assign serial number and confirm allocation",
           outcome: "Hardware registered to employee inventory ledger",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-assets-create-modal-form-03.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-create-modal-form-03.jpg",
           screenAlt: "CVM HRM asset creation and allocation dialog",
         },
       ],
@@ -770,7 +796,7 @@ export const cvmHrmProject: PhoneProject = {
           description:
             "Staff log daily hours against client project codes with task descriptions and billable toggles.",
           action: "Review weekly total & tap 'Submit for Approval'",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-attendance-timesheet-default-01.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/timesheets/cvm-hrms-attendance-timesheet-default-01.jpg",
           screenAlt: "CVM HRM employee timesheet entry",
         },
         {
@@ -779,7 +805,7 @@ export const cvmHrmProject: PhoneProject = {
           description:
             "Department leads inspect submitted hours with overtime alerts, sick leave cross-checks, and project caps.",
           action: "Select timesheet entry to inspect details",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-attendance-review-queue-02.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/timesheets/cvm-hrms-attendance-review-queue-02.jpg",
           screenAlt: "CVM HRM manager timesheet dashboard",
         },
         {
@@ -790,7 +816,7 @@ export const cvmHrmProject: PhoneProject = {
           action: "Choose 'Approve' or 'Reject with Reason'",
           decisionPoint: "Hours verified against sprint scope?",
           outcome: "Approved to payroll or opened in structured rejection dialog",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-timesheet-inspection-modal-details-03.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/timesheets/cvm-hrms-timesheet-inspection-modal-details-03.jpg",
           screenAlt: "CVM HRM timesheet details inspection dialog",
         },
       ],
@@ -810,7 +836,7 @@ export const cvmHrmProject: PhoneProject = {
           userAction: "Manager filters by pending queue",
           behavior:
             "Highlights entry with amber status chip and displays quick-review actions in data row.",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-attendance-review-queue-02.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/timesheets/cvm-hrms-attendance-review-queue-02.jpg",
           screenAlt: "Timesheet pending review dashboard",
         },
         {
@@ -820,7 +846,7 @@ export const cvmHrmProject: PhoneProject = {
           userAction: "Input mandatory explanatory feedback",
           behavior:
             "Blocks accidental rejection without explanation; sends instant notification to employee for correction.",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-attendance-rejection-dialog-reason-04.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/timesheets/cvm-hrms-attendance-rejection-dialog-reason-04.jpg",
           screenAlt: "Timesheet reject reason modal",
         },
         {
@@ -830,7 +856,7 @@ export const cvmHrmProject: PhoneProject = {
           userAction: "Employee receives automated confirmation",
           behavior:
             "Deducts quota from balance counter, syncs team calendar, and flags substitute coverage.",
-          screenSrc: "/work/cvm-hrm/cvm-hrms-leave-approval-confirmation-modal-04.jpg",
+          screenSrc: "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-approval-confirmation-modal-04.jpg",
           screenAlt: "Leave request approved modal",
         },
       ],
@@ -852,12 +878,12 @@ export const cvmHrmProject: PhoneProject = {
             "Centralized administrator dashboard and employee leave self-service portal.",
           images: [
             {
-              src: "/work/cvm-hrm/cvm-hrms-dashboard-overview-default-01.jpg",
+              src: "/figma/cvm-hrms/screens/dashboard/cvm-hrms-dashboard-overview-default-01.jpg",
               alt: "CVM HRM overview dashboard with attendance, quick actions, and metrics",
               title: "Overview dashboard",
             },
             {
-              src: "/work/cvm-hrm/cvm-hrms-leave-balances-dashboard-default-01.jpg",
+              src: "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-balances-dashboard-default-01.jpg",
               alt: "CVM HRM leave management dashboard and request history",
               title: "Leave management",
             },
@@ -877,12 +903,12 @@ export const cvmHrmProject: PhoneProject = {
             "Structured onboarding pipeline and enterprise hardware asset registry.",
           images: [
             {
-              src: "/work/cvm-hrm/cvm-hrms-onboarding-cohort-dashboard-default-01.jpg",
+              src: "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-cohort-dashboard-default-01.jpg",
               alt: "CVM HRM employee onboarding dashboard and progress tracker",
               title: "Onboarding milestones",
             },
             {
-              src: "/work/cvm-hrm/cvm-hrms-assets-management-dashboard-01.jpg",
+              src: "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-management-dashboard-01.jpg",
               alt: "CVM HRM asset management and equipment allocation list",
               title: "Hardware inventory",
             },
@@ -902,12 +928,12 @@ export const cvmHrmProject: PhoneProject = {
             "Attendance verification logs and company-wide staff directory.",
           images: [
             {
-              src: "/work/cvm-hrm/cvm-hrms-attendance-overview-calendar-default-01.jpg",
+              src: "/figma/cvm-hrms/screens/attendance/cvm-hrms-attendance-overview-calendar-default-01.jpg",
               alt: "CVM HRM attendance tracking and timesheet review",
               title: "Timesheets & attendance",
             },
             {
-              src: "/work/cvm-hrm/cvm-hrms-team-department-roster-directory-01.jpg",
+              src: "/figma/cvm-hrms/screens/employee-management/cvm-hrms-team-department-roster-directory-01.jpg",
               alt: "CVM HRM team directory and department management",
               title: "Department directory",
             },
@@ -940,49 +966,49 @@ export const cvmHrmProject: PhoneProject = {
   ],
   images: [
     {
-      src: "/work/cvm-hrm/cvm-hrms-dashboard-overview-default-01.jpg",
+      src: "/figma/cvm-hrms/screens/dashboard/cvm-hrms-dashboard-overview-default-01.jpg",
       alt: "CVM HRM overview dashboard with attendance, quick actions, and metrics",
       title: "Overview dashboard",
       urlPath: "overview",
     },
     {
-      src: "/work/cvm-hrm/cvm-hrms-leave-balances-dashboard-default-01.jpg",
+      src: "/figma/cvm-hrms/screens/leave-management/cvm-hrms-leave-balances-dashboard-default-01.jpg",
       alt: "CVM HRM leave management dashboard and request history",
       title: "Leave management",
       urlPath: "leaves",
     },
     {
-      src: "/work/cvm-hrm/cvm-hrms-attendance-overview-calendar-default-01.jpg",
+      src: "/figma/cvm-hrms/screens/attendance/cvm-hrms-attendance-overview-calendar-default-01.jpg",
       alt: "CVM HRM attendance tracking and timesheet review",
       title: "Attendance & timesheets",
       urlPath: "attendance",
     },
     {
-      src: "/work/cvm-hrm/cvm-hrms-onboarding-cohort-dashboard-default-01.jpg",
+      src: "/figma/cvm-hrms/screens/employee-onboarding/cvm-hrms-onboarding-cohort-dashboard-default-01.jpg",
       alt: "CVM HRM employee onboarding dashboard and progress tracker",
       title: "Employee onboarding",
       urlPath: "onboarding",
     },
     {
-      src: "/work/cvm-hrm/cvm-hrms-assets-management-dashboard-01.jpg",
+      src: "/figma/cvm-hrms/screens/asset-management/cvm-hrms-assets-management-dashboard-01.jpg",
       alt: "CVM HRM asset management and equipment allocation list",
       title: "Asset management",
       urlPath: "assets",
     },
     {
-      src: "/work/cvm-hrm/cvm-hrms-team-department-roster-directory-01.jpg",
+      src: "/figma/cvm-hrms/screens/employee-management/cvm-hrms-team-department-roster-directory-01.jpg",
       alt: "CVM HRM team directory and department management",
       title: "Team directory",
       urlPath: "team",
     },
     {
-      src: "/work/cvm-hrm/cvm-hrms-employee-profile-overview-default-01.jpg",
+      src: "/figma/cvm-hrms/screens/employee-profile/cvm-hrms-employee-profile-overview-default-01.jpg",
       alt: "CVM HRM employee self-service profile and details",
       title: "Employee self-service",
       urlPath: "self-service",
     },
     {
-      src: "/work/cvm-hrm/cvm-hrms-approvals-central-hr-queue-01.jpg",
+      src: "/figma/cvm-hrms/screens/approvals/cvm-hrms-approvals-central-hr-queue-01.jpg",
       alt: "CVM HRM HR requests and approval workflow",
       title: "HR requests",
       urlPath: "hr-requests",

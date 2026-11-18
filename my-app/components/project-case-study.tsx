@@ -9,27 +9,28 @@ import ProjectCaseStudyContent, {
 import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
 import type { PhoneProject } from "@/lib/phone-projects";
 import type { SectionNavItem } from "@/components/ProjectSectionNavigation";
+import { getProjectScreenCategories } from "@/lib/case-study-screens";
 
 const ALL_RELATED_PROJECTS: RelatedProjectItem[] = [
   {
     title: "TurboPaisa",
     href: "/work/turbopaisa",
     thumbnailSrc:
-      "/work/turbopaisa/turbopaisa-home-rewards-dashboard-default-01.jpg",
+      "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
     thumbnailAlt: "TurboPaisa mobile app home screen",
   },
   {
     title: "CredBuddha",
     href: "/work/credbuddha",
     thumbnailSrc:
-      "/work/credbuddha/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
+      "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
     thumbnailAlt: "CredBuddha mobile app home screen",
   },
   {
     title: "Core Volt Matrix",
     href: "/work/cvm-hrm",
     thumbnailSrc:
-      "/work/cvm-hrm/cvm-hrms-dashboard-overview-default-01.jpg",
+      "/figma/cvm-hrms/screens/dashboard/cvm-hrms-dashboard-overview-default-01.jpg",
     thumbnailAlt: "Core Volt Matrix HRMS dashboard",
   },
   {
@@ -60,15 +61,37 @@ export default function ProjectCaseStudy({
     (p) => p.href !== `/work/${project.slug}`,
   );
 
-  // Dynamically assemble right-rail navigation items based on actual content
+  const screenCategories = getProjectScreenCategories(project.slug);
+  const hasCategories = screenCategories.length > 0;
+
+  // Dynamically assemble right-rail navigation items
   const navItems: SectionNavItem[] = [];
+
+  if (project.figmaEmbedUrl) {
+    navItems.push({ id: "figma-embed", label: "Figma Canvas" });
+  }
 
   if (project.overviewData || project.overview) {
     navItems.push({ id: "overview", label: "Overview" });
   }
 
-  if (project.highlights && project.highlights.length > 0) {
-    navItems.push({ id: "highlights", label: "Highlights" });
+  if (hasCategories) {
+    // Add screen folders as primary index
+    screenCategories.forEach((cat) => {
+      navItems.push({
+        id: cat.id,
+        label: cat.label,
+        count: cat.screens.length,
+      });
+    });
+  } else {
+    // Fallback for non-screen projects (e.g. game campaigns)
+    if (project.highlights && project.highlights.length > 0) {
+      navItems.push({ id: "highlights", label: "Highlights" });
+    }
+    if (project.solution && project.solution.blocks.length > 0) {
+      navItems.push({ id: "solution", label: "Solution" });
+    }
   }
 
   if (
@@ -78,18 +101,11 @@ export default function ProjectCaseStudy({
     navItems.push({ id: "flows", label: "User & State Flows" });
   }
 
-  if (
-    (project.solution && project.solution.blocks.length > 0) ||
-    project.images.length > 0
-  ) {
-    navItems.push({ id: "solution", label: "Solution" });
-  }
-
-  if (project.behindTheBuild && project.behindTheBuild.paragraphs.length > 0) {
+  if (!hasCategories && project.behindTheBuild && project.behindTheBuild.paragraphs.length > 0) {
     navItems.push({ id: "behind-the-build", label: "Behind the build" });
   }
 
-  if (project.reflection && project.reflection.paragraphs.length > 0) {
+  if (!hasCategories && project.reflection && project.reflection.paragraphs.length > 0) {
     navItems.push({ id: "reflection", label: "Reflection" });
   }
 
@@ -110,17 +126,22 @@ export default function ProjectCaseStudy({
         }
         year={project.year}
         status={project.status}
-        figmaUrl={project.figmaUrl}
+        figmaUrl={project.figmaSourceUrl || project.figmaUrl}
         navItems={navItems}
+        navTitle={hasCategories ? "APPLICATION SCREENS" : "ON THIS PAGE"}
       >
         <ProjectCaseStudyContent
+          title={project.title}
           deviceType={project.deviceType ?? "phone"}
           heroImage={project.images[0]}
+          figmaEmbedUrl={project.figmaEmbedUrl}
+          figmaSourceUrl={project.figmaSourceUrl || project.figmaUrl}
+          screenCategories={screenCategories}
           overview={project.overviewData ?? project.overview}
           highlights={project.highlights}
           userFlows={project.userFlows}
           stateFlows={project.stateFlows}
-          figmaUrl={project.figmaUrl}
+          figmaUrl={project.figmaSourceUrl || project.figmaUrl}
           solution={project.solution}
           behindTheBuild={project.behindTheBuild}
           reflection={project.reflection}

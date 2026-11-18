@@ -19,6 +19,10 @@ import type {
 import ProjectFlowsSection from "@/components/case-study/ProjectFlowsSection";
 import type { UserFlow } from "@/components/case-study/UserFlowDiagram";
 import type { StateFlow } from "@/components/case-study/StateFlowGallery";
+import FigmaDesignEmbed from "@/components/case-study/FigmaDesignEmbed";
+import ApplicationScreenGallery, {
+  type ScreenCategoryGroup,
+} from "@/components/case-study/ApplicationScreenGallery";
 
 export type RelatedProjectItem = {
   title: string;
@@ -29,9 +33,13 @@ export type RelatedProjectItem = {
 };
 
 export type ProjectCaseStudyContentProps = {
+  title?: string;
   deviceType?: "phone" | "desktop";
   heroCustom?: React.ReactNode;
   heroImage?: ImageItem;
+  figmaEmbedUrl?: string;
+  figmaSourceUrl?: string;
+  screenCategories?: ScreenCategoryGroup[];
   overview?: CaseStudyOverview | string;
   highlights?: CaseStudyHighlight[];
   userFlows?: UserFlow[];
@@ -55,9 +63,13 @@ export type ProjectCaseStudyContentProps = {
 };
 
 export default function ProjectCaseStudyContent({
+  title,
   deviceType = "phone",
   heroCustom,
   heroImage,
+  figmaEmbedUrl,
+  figmaSourceUrl,
+  screenCategories = [],
   overview,
   highlights,
   userFlows,
@@ -79,36 +91,46 @@ export default function ProjectCaseStudyContent({
     ? normalizedOverview.description
     : [normalizedOverview.description];
 
+  const hasScreenCategories = screenCategories && screenCategories.length > 0;
+
   return (
     <article className="project-case-study-content w-full flex flex-col">
-      {/* 01 — HERO / COVER */}
-      <section
-        id="hero"
-        aria-label="Project Hero Presentation"
-        className="w-full mb-12 sm:mb-16"
-      >
-        <div className="w-full bg-[#F1F1F1] rounded-2xl sm:rounded-3xl p-6 sm:p-12 md:p-16 flex items-center justify-center overflow-hidden min-h-[380px] sm:min-h-[460px]">
-          {heroCustom ? (
-            heroCustom
-          ) : heroImage ? (
-            deviceType === "desktop" ? (
-              <DesktopMockup
-                src={heroImage.src}
-                alt={heroImage.alt}
-                title={heroImage.title}
-                priority
-              />
-            ) : (
-              <PhoneMockup
-                src={heroImage.src}
-                alt={heroImage.alt}
-                title={heroImage.title}
-                priority
-              />
-            )
-          ) : null}
-        </div>
-      </section>
+      {/* 01 — HERO / INTERACTIVE FIGMA EMBED OR COVER */}
+      {figmaEmbedUrl ? (
+        <FigmaDesignEmbed
+          title={title || "Project"}
+          embedUrl={figmaEmbedUrl}
+          sourceUrl={figmaSourceUrl || figmaUrl || ""}
+        />
+      ) : (
+        <section
+          id="hero"
+          aria-label="Project Hero Presentation"
+          className="w-full mb-12 sm:mb-16"
+        >
+          <div className="w-full bg-[#F1F1F1] rounded-2xl sm:rounded-3xl p-6 sm:p-12 md:p-16 flex items-center justify-center overflow-hidden min-h-[380px] sm:min-h-[460px]">
+            {heroCustom ? (
+              heroCustom
+            ) : heroImage ? (
+              deviceType === "desktop" ? (
+                <DesktopMockup
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  title={heroImage.title}
+                  priority
+                />
+              ) : (
+                <PhoneMockup
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  title={heroImage.title}
+                  priority
+                />
+              )
+            ) : null}
+          </div>
+        </section>
+      )}
 
       {/* 02 — OVERVIEW */}
       {overviewParagraphs.length > 0 && (
@@ -147,6 +169,7 @@ export default function ProjectCaseStudyContent({
             normalizedOverview.timeline ||
             normalizedOverview.liveUrl ||
             normalizedOverview.figmaUrl ||
+            figmaSourceUrl ||
             figmaUrl) && (
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 pt-5 border-t border-neutral-100 max-w-[700px] text-xs">
               {normalizedOverview.role && (
@@ -196,14 +219,14 @@ export default function ProjectCaseStudyContent({
                   </dd>
                 </div>
               )}
-              {(normalizedOverview.figmaUrl || figmaUrl) && (
+              {(figmaSourceUrl || normalizedOverview.figmaUrl || figmaUrl) && (
                 <div>
                   <dt className="text-neutral-400 font-mono text-[11px] mb-0.5">
                     Figma Source
                   </dt>
                   <dd>
                     <a
-                      href={normalizedOverview.figmaUrl || figmaUrl}
+                      href={figmaSourceUrl || normalizedOverview.figmaUrl || figmaUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-neutral-900 font-medium hover:underline inline-flex items-center gap-1"
@@ -247,17 +270,45 @@ export default function ProjectCaseStudyContent({
         </section>
       )}
 
-      {/* 03.5 — USER FLOWS & INTERFACE STATES */}
+      {/* 04 — APPLICATION SCREENS (Visual-First Minimal Gallery) */}
+      {hasScreenCategories ? (
+        <section
+          id="screens"
+          aria-label="Application Screens Showcase"
+          className="w-full mb-16 sm:mb-20"
+        >
+          <div className="mb-8">
+            <span className="text-[11px] font-mono tracking-wider uppercase text-neutral-400">
+              Curated Screens
+            </span>
+            <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-neutral-900 mt-1">
+              Application Screen Gallery
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-500 mt-1 max-w-xl">
+              Curated interface screens designed in Figma, structured by user journey and functional module. Click any screen to view in full resolution.
+            </p>
+          </div>
+
+          <ApplicationScreenGallery
+            categories={screenCategories}
+            deviceType={deviceType}
+          />
+        </section>
+      ) : null}
+
+      {/* 05 — USER FLOWS & INTERFACE STATES */}
       {((userFlows && userFlows.length > 0) ||
         (stateFlows && stateFlows.length > 0)) && (
-        <ProjectFlowsSection
-          flowsData={{ userFlows, stateFlows }}
-          deviceType={deviceType}
-        />
+        <section id="flows" className="scroll-mt-24 mb-16">
+          <ProjectFlowsSection
+            flowsData={{ userFlows, stateFlows }}
+            deviceType={deviceType}
+          />
+        </section>
       )}
 
-      {/* 04 — SOLUTION */}
-      {solution && solution.blocks.length > 0 && (
+      {/* 06 — SOLUTION (Fallback for projects without screenCategories, e.g. Game Campaigns) */}
+      {!hasScreenCategories && solution && solution.blocks.length > 0 && (
         <section
           id="solution"
           aria-labelledby="heading-solution"
@@ -338,8 +389,8 @@ export default function ProjectCaseStudyContent({
         </section>
       )}
 
-      {/* Fallback image gallery if no structured solution blocks provided */}
-      {!solution && fallbackImages.length > 0 && (
+      {/* Fallback image gallery if neither categories nor solution blocks are provided */}
+      {!hasScreenCategories && !solution && fallbackImages.length > 0 && (
         <section
           id="solution"
           aria-labelledby="heading-solution"
@@ -366,7 +417,7 @@ export default function ProjectCaseStudyContent({
         </section>
       )}
 
-      {/* 05 — BEHIND THE BUILD */}
+      {/* 07 — BEHIND THE BUILD */}
       {behindTheBuild && behindTheBuild.paragraphs.length > 0 && (
         <section
           id="behind-the-build"
@@ -405,7 +456,7 @@ export default function ProjectCaseStudyContent({
         </section>
       )}
 
-      {/* 06 — REFLECTION */}
+      {/* 08 — REFLECTION */}
       {reflection && reflection.paragraphs.length > 0 && (
         <section
           id="reflection"
@@ -438,7 +489,7 @@ export default function ProjectCaseStudyContent({
         </section>
       )}
 
-      {/* 07 — OTHER PROJECTS */}
+      {/* 09 — OTHER PROJECTS */}
       {relatedProjects.length > 0 && (
         <section
           id="other-projects"
