@@ -16,6 +16,11 @@ import type {
   CaseStudyOverview,
   ImageItem,
 } from "@/lib/phone-projects";
+import {
+  PORTFOLIO_PROJECTS,
+  ProjectPreview,
+  type PreviewKind,
+} from "@/lib/projects-catalog";
 import ProjectFlowsSection from "@/components/case-study/ProjectFlowsSection";
 import type { UserFlow } from "@/components/case-study/UserFlowDiagram";
 import type { StateFlow } from "@/components/case-study/StateFlowGallery";
@@ -30,6 +35,7 @@ export type RelatedProjectItem = {
   thumbnailSrc?: string;
   thumbnailAlt?: string;
   artwork?: React.ReactNode;
+  preview?: PreviewKind;
 };
 
 export type ProjectCaseStudyContentProps = {
@@ -503,31 +509,67 @@ export default function ProjectCaseStudyContent({
             Other projects
           </h2>
 
-          <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {relatedProjects.map((project) => (
-              <TransitionLink
-                key={project.href}
-                href={project.href}
-                className="group flex flex-col gap-2 p-2 rounded-xl border border-neutral-150 bg-neutral-50/50 hover:bg-white hover:border-neutral-300 hover:shadow-sm transition-all duration-200"
-              >
-                <div className="relative w-full aspect-[4/3] rounded-lg bg-[#F1F1F1] overflow-hidden flex items-center justify-center p-2">
-                  {project.thumbnailSrc ? (
-                    <Image
-                      src={project.thumbnailSrc}
-                      alt={project.thumbnailAlt ?? project.title}
-                      fill
-                      sizes="180px"
-                      className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                    />
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedProjects.map((project) => {
+              const catalogMatch =
+                PORTFOLIO_PROJECTS.find(
+                  (item) => project.preview && item.preview === project.preview,
+                ) ??
+                PORTFOLIO_PROJECTS.find(
+                  (item) =>
+                    item.slug === project.href.replace(/^\/work\//, ""),
+                ) ??
+                PORTFOLIO_PROJECTS.find(
+                  (item) => item.liveUrl === project.href,
+                );
+
+              return (
+                <article
+                  key={project.href}
+                  className="project-card group flex flex-col"
+                >
+                  {catalogMatch ? (
+                    <div
+                      className={`project-art art-${catalogMatch.preview}`}
+                      aria-hidden={
+                        catalogMatch.preview === "inventory" ||
+                        catalogMatch.preview === "market"
+                      }
+                    >
+                      <ProjectPreview
+                        disableInnerLinks
+                        project={catalogMatch}
+                      />
+                    </div>
                   ) : (
-                    project.artwork
+                    <div className="relative w-full aspect-[4/3] rounded-lg bg-[#F1F1F1] overflow-hidden flex items-center justify-center p-2">
+                      {project.thumbnailSrc ? (
+                        <Image
+                          src={project.thumbnailSrc}
+                          alt={project.thumbnailAlt ?? project.title}
+                          fill
+                          sizes="180px"
+                          className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                        />
+                      ) : (
+                        project.artwork
+                      )}
+                    </div>
                   )}
-                </div>
-                <span className="text-[12px] font-medium text-neutral-800 group-hover:text-neutral-950 transition-colors truncate px-1">
-                  {project.title}
-                </span>
-              </TransitionLink>
-            ))}
+                  <h3 className="text-[12px] font-medium text-neutral-800 group-hover:text-neutral-950 transition-colors truncate px-1">
+                    <TransitionLink href={project.href}>
+                      {project.title}
+                    </TransitionLink>
+                  </h3>
+                  <TransitionLink
+                    className="text-[11px] text-neutral-500 hover:text-neutral-900 px-1"
+                    href={project.href}
+                  >
+                    View case study <span aria-hidden="true">↗</span>
+                  </TransitionLink>
+                </article>
+              );
+            })}
           </div>
         </section>
       )}

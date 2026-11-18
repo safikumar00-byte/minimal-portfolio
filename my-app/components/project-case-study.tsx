@@ -1,63 +1,19 @@
 "use client";
 
 import * as React from "react";
-import PageTransition from "@/components/page-transition";
 import CaseStudyLayout from "@/components/case-study-layout";
-import ProjectCaseStudyContent, {
-  type RelatedProjectItem,
-} from "@/components/ProjectCaseStudyContent";
-import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
+import ProjectCaseStudyContent from "@/components/ProjectCaseStudyContent";
 import type { PhoneProject } from "@/lib/phone-projects";
 import type { SectionNavItem } from "@/components/ProjectSectionNavigation";
 import { getProjectScreenCategories } from "@/lib/case-study-screens";
-
-const ALL_RELATED_PROJECTS: RelatedProjectItem[] = [
-  {
-    title: "TurboPaisa",
-    href: "/work/turbopaisa",
-    thumbnailSrc:
-      "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
-    thumbnailAlt: "TurboPaisa mobile app home screen",
-  },
-  {
-    title: "CredBuddha",
-    href: "/work/credbuddha",
-    thumbnailSrc:
-      "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
-    thumbnailAlt: "CredBuddha mobile app home screen",
-  },
-  {
-    title: "Core Volt Matrix",
-    href: "/work/cvm-hrm",
-    thumbnailSrc:
-      "/figma/cvm-hrms/screens/dashboard/cvm-hrms-dashboard-overview-default-01.jpg",
-    thumbnailAlt: "Core Volt Matrix HRMS dashboard",
-  },
-  {
-    title: "Game & Campaign Landing Pages",
-    href: "/work/game-campaigns",
-    artwork: (
-      <PortfolioTicket
-        dates="DIGITAL EXPERIENCES"
-        href=""
-        name={"GAME & CAMPAIGN\nLANDING PAGES"}
-        presenter="INTERACTIVE EXPERIENCES PRESENT"
-        stubText="EXPLORE"
-        tilt={false}
-        venue="CREATIVE DEVELOPMENT"
-        watermark="PLAY"
-        width={130}
-      />
-    ),
-  },
-];
+import RELATED_PROJECTS from "@/lib/related-projects";
 
 export default function ProjectCaseStudy({
   project,
 }: {
   project: PhoneProject;
 }) {
-  const relatedProjects = ALL_RELATED_PROJECTS.filter(
+  const relatedProjects = RELATED_PROJECTS.filter(
     (p) => p.href !== `/work/${project.slug}`,
   );
 
@@ -114,8 +70,7 @@ export default function ProjectCaseStudy({
   }
 
   return (
-    <PageTransition>
-      <CaseStudyLayout
+    <CaseStudyLayout
         title={project.title}
         summary={project.shortDescription ?? project.summary}
         categoryTags={
@@ -149,6 +104,5 @@ export default function ProjectCaseStudy({
           fallbackImages={project.images}
         />
       </CaseStudyLayout>
-    </PageTransition>
   );
 }

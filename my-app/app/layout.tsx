@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "@/components/site-header";
-import {
-  RouteTransitionContent,
-  RouteTransitionProvider,
-} from "@/components/route-transition-provider";
+import PageTransition from "@/components/motion/PageTransition";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,10 +26,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <RouteTransitionProvider>
-          <SiteHeader />
-          <RouteTransitionContent>{children}</RouteTransitionContent>
-        </RouteTransitionProvider>
+        <SiteHeader />
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

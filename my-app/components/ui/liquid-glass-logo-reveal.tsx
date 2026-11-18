@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
+import { clamp01, cn } from "@/lib/utils"
 
 /*
  * 21st.dev Glass Reveal: the 21st.dev mark lingers big against the rim of a clear glass tile, the
@@ -694,7 +694,6 @@ const TAIL = 1.1 // from the glass letting go to everything at rest, seconds
 const OUTRO = 0.5 // loop only: the logo blurs away before the next reveal
 const endOf = (P: Settings) => P.present + TAIL
 
-const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x)
 const mix = (a: number, b: number, t: number) => a + (b - a) * t
 const smooth = (a: number, b: number, x: number) => {
   const t = clamp01((x - a) / (b - a))

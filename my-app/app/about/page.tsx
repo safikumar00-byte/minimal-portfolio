@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import PageTransition from "@/components/page-transition";
 
 export const metadata: Metadata = {
   title: "About Sunil Kumar Reddy — Product Designer & Developer",
@@ -88,8 +87,7 @@ const certifications = [
 
 export default function AboutPage() {
   return (
-    <PageTransition>
-      <div className="portfolio-shell about-shell">
+    <div className="portfolio-shell about-shell">
         <main className="about-layout">
         <aside className="about-sidebar">
           <h1>
@@ -263,7 +261,6 @@ export default function AboutPage() {
           <span>© 2026 Sunil Kumar Reddy</span>
           <a href="/Sunil_Kumar_Reddy.pdf" download>Download résumé ↗</a>
         </footer>
-      </div>
-    </PageTransition>
+    </div>
   );
 }

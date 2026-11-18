@@ -51,11 +51,145 @@ export default function FigmaDesignEmbed({
       </div>
 
       {/* Embed Container Frame */}
-      <div className="relative w-full rounded-2xl overflow-hidden border border-neutral-200/90 bg-[#1E1E1E] shadow-sm">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-[#1E1E1E]">
         {/* Loading Skeleton */}
         {isLoading && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-neutral-100/90 backdrop-blur-xs transition-opacity duration-300">
-            <div className="w-8 h-8 rounded-full border-2 border-neutral-300 border-t-neutral-800 animate-spin mb-3" />
+            <style>{`
+      .figma-boxes {
+        --size: 28px;
+        --duration: 800ms;
+        height: calc(var(--size) * 2);
+        width: calc(var(--size) * 3);
+        position: relative;
+        transform-style: preserve-3d;
+        transform-origin: 50% 50%;
+        margin-top: calc(var(--size) * 1.5 * -1);
+        transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+      }
+
+      .figma-boxes .box {
+        width: var(--size);
+        height: var(--size);
+        top: 0;
+        left: 0;
+        position: absolute;
+        transform-style: preserve-3d;
+      }
+
+      .figma-boxes .box:nth-child(1) {
+        transform: translate(100%, 0);
+        animation: figmaBox1 var(--duration) linear infinite;
+      }
+
+      .figma-boxes .box:nth-child(2) {
+        transform: translate(0, 100%);
+        animation: figmaBox2 var(--duration) linear infinite;
+      }
+
+      .figma-boxes .box:nth-child(3) {
+        transform: translate(100%, 100%);
+        animation: figmaBox3 var(--duration) linear infinite;
+      }
+
+      .figma-boxes .box:nth-child(4) {
+        transform: translate(200%, 0);
+        animation: figmaBox4 var(--duration) linear infinite;
+      }
+
+      .figma-boxes .box > div {
+        --background: #5C8DF6;
+        --top: auto;
+        --right: auto;
+        --bottom: auto;
+        --left: auto;
+        --translateZ: calc(var(--size) / 2);
+        --rotateY: 0deg;
+        --rotateX: 0deg;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: var(--background);
+        top: var(--top);
+        right: var(--right);
+        bottom: var(--bottom);
+        left: var(--left);
+        transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+      }
+
+      .figma-boxes .box > div:nth-child(1) {
+        --top: 0;
+        --left: 0;
+      }
+
+      .figma-boxes .box > div:nth-child(2) {
+        --background: #145af2;
+        --right: 0;
+        --rotateY: 90deg;
+      }
+
+      .figma-boxes .box > div:nth-child(3) {
+        --background: #447cf5;
+        --rotateX: -90deg;
+      }
+
+      .figma-boxes .box > div:nth-child(4) {
+        --background: #DBE3F4;
+        --top: 0;
+        --left: 0;
+        --translateZ: calc(var(--size) * 3 * -1);
+      }
+
+      @keyframes figmaBox1 {
+        0%, 50% { transform: translate(100%, 0); }
+        100% { transform: translate(200%, 0); }
+      }
+
+      @keyframes figmaBox2 {
+        0% { transform: translate(0, 100%); }
+        50% { transform: translate(0, 0); }
+        100% { transform: translate(100%, 0); }
+      }
+
+      @keyframes figmaBox3 {
+        0%, 50% { transform: translate(100%, 100%); }
+        100% { transform: translate(0, 100%); }
+      }
+
+      @keyframes figmaBox4 {
+        0% { transform: translate(200%, 0); }
+        50% { transform: translate(200%, 100%); }
+        100% { transform: translate(100%, 100%); }
+      }
+    `}</style>
+
+            <div className="figma-boxes mb-12" aria-hidden="true">
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+            </div>
+
             <p className="text-xs font-mono text-neutral-500">
               Loading {title} Figma workspace…
             </p>
@@ -81,12 +215,12 @@ export default function FigmaDesignEmbed({
             </a>
           </div>
         ) : (
-          <div className="w-full h-[380px] sm:h-[500px] md:h-[580px] lg:h-[640px] xl:h-[680px]">
+          <div className="w-full h-[380px] sm:h-[500px] md:h-[480px] lg:h-[480px] xl:h-[560px]">
             <iframe
               src={embedUrl}
               title={`${title} — Figma design file`}
-              width="100%"
-              height="100%"
+              width="64%"
+              height="36%"
               allowFullScreen
               loading="lazy"
               onLoad={() => setIsLoading(false)}

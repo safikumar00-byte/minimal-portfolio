@@ -152,9 +152,9 @@ export default function ApplicationScreenGallery({
                   >
                     {/* Frame Container */}
                     <div
-                      className={`relative w-full rounded-xl overflow-hidden bg-neutral-50/80 border border-neutral-200/90 group-hover:border-neutral-400 group-hover:shadow-md transition-all duration-200 p-2 sm:p-3 flex items-center justify-center ${
+                      className={`relative w-full rounded-xl overflow-hidden bg-neutral-50/80  shadow-sm  group-hover:border-neutral-400 group-hover:shadow-md transition-all duration-200 p-0 sm:p-0 flex items-center justify-center ${
                         isScreenDesktop
-                          ? "aspect-16/10"
+                          ? ""
                           : "aspect-9/19.5"
                       }`}
                     >

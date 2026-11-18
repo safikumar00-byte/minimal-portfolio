@@ -2,15 +2,9 @@
 
 import * as React from "react";
 import { createPortal } from "react-dom";
-
-const emptySubscribe = () => () => {};
-function useIsClient() {
-  return React.useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  );
-}
+import useBodyScrollLock from "@/hooks/useBodyScrollLock";
+import useIsClient from "@/hooks/useIsClient";
+import useEscapeKey from "@/hooks/useEscapeKey";
 
 /* ------------------------------------------------------------------ */
 /*  Types & Real Brand Gallery Data                                   */
@@ -51,7 +45,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/urban-sprouts/Artboard 14.png", caption: "Outdoor Billboard & Signage" },
       { src: "/brand-gallery/urban-sprouts/Artboard 1_1.png", caption: "Master Brand Suite Spread" },
     ],
-    description: "Sustainable vertical farming & microgreen nursery identity, biological sprout symbol, eco-packaging tokens, and agricultural display collateral.",
+    description:
+      "Sustainable vertical farming & microgreen nursery identity, biological sprout symbol, eco-packaging tokens, and agricultural display collateral.",
     deliverables: ["Organic Brandmark", "Color Palette", "Cardboard Packaging", "Label Systems", "Store Signage"],
   },
   {
@@ -71,7 +66,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/lunex/icon-black.png", caption: "Solid Dark Icon Variant" },
       { src: "/brand-gallery/lunex/icon-white.png", caption: "Solid Light Icon Variant" },
     ],
-    description: "High-end bespoke retail and lifestyle apparel identity, interlocking geometry monogram, gold-leaf print packaging, and customer stationery.",
+    description:
+      "High-end bespoke retail and lifestyle apparel identity, interlocking geometry monogram, gold-leaf print packaging, and customer stationery.",
     deliverables: ["Geometric Monogram", "Hangtag Mockups", "Stationery Kit", "Gold Foil Specs", "Garment Labels"],
   },
   {
@@ -97,7 +93,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/moon-safe/Artboard 1 copy 2@4x-100.jpg", caption: "Clinical Brand Guidelines Manual" },
       { src: "/brand-gallery/moon-safe/Artboard 15@4x-100.jpg", caption: "Laboratory Visual Design System" },
     ],
-    description: "Diagnostic medical laboratory and clinical safety architecture, sterile packaging systems, corporate identity, and environmental facility signage.",
+    description:
+      "Diagnostic medical laboratory and clinical safety architecture, sterile packaging systems, corporate identity, and environmental facility signage.",
     deliverables: ["Clinical Identity", "Vial & Tube Labels", "Signage Suite", "PPE Branding", "Stationery Pack"],
   },
   {
@@ -119,7 +116,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/volt-matrix/5.jpg", caption: "Cloud Platform Design System" },
       { src: "/brand-gallery/volt-matrix/6.jpg", caption: "Brand Guidelines Overview" },
     ],
-    description: "Enterprise electrical infrastructure and digital workflow platform branding, modular typography, and technical collateral.",
+    description:
+      "Enterprise electrical infrastructure and digital workflow platform branding, modular typography, and technical collateral.",
     deliverables: ["Identity Emblem", "Design Tokens", "Stationery Pack", "Corporate Badges", "Design Guide"],
   },
   {
@@ -143,7 +141,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/bug-bloons/9.jpg", caption: "Storefront Window Decals" },
       { src: "/brand-gallery/bug-bloons/10.jpg", caption: "Vehicle Wrap Mockup" },
     ],
-    description: "Playful creative event and balloon artistry identity, bespoke illustrative mascot design, party collateral, and festival promotional banners.",
+    description:
+      "Playful creative event and balloon artistry identity, bespoke illustrative mascot design, party collateral, and festival promotional banners.",
     deliverables: ["Character Illustration", "Mascot Guidelines", "Party Collateral", "Stickers & Decals", "Vehicle Wrap"],
   },
   {
@@ -161,7 +160,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/sfx-forex/dp.jpg", caption: "Social Media Display Avatar & Watermark" },
       { src: "/brand-gallery/sfx-forex/icon.png", caption: "Transparent App Launcher Symbol" },
     ],
-    description: "Algorithmic foreign exchange trading portal, dynamic market waves iconography, terminal design tokens, and social branding.",
+    description:
+      "Algorithmic foreign exchange trading portal, dynamic market waves iconography, terminal design tokens, and social branding.",
     deliverables: ["Trading Icon", "App Launcher", "Avatar Graphics", "Market Banners", "Vector Logos"],
   },
   {
@@ -178,7 +178,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/grow-fast-package/back.jpg", caption: "Technical Directions & Nutrient Breakdown Back" },
       { src: "/brand-gallery/grow-fast-package/full_design.png", caption: "Full Die-Cut Packaging Artwork Flat" },
     ],
-    description: "Specialized agricultural plant bio-nutrient packaging design, organic soil amendment sacks, regulatory labels, and dieline layouts.",
+    description:
+      "Specialized agricultural plant bio-nutrient packaging design, organic soil amendment sacks, regulatory labels, and dieline layouts.",
     deliverables: ["Die-Cut Packaging", "Front Bag Art", "Back Specs Label", "Print Ready PDF", "Store Display"],
   },
   {
@@ -196,7 +197,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/tristone/3.png", caption: "Social Media Marketing Deck" },
       { src: "/brand-gallery/tristone/4.png", caption: "Digital Campaign Key Visuals" },
     ],
-    description: "Creative digital marketing studio visual branding, 3D social carousel layouts, ad campaign key visuals, and typographic systems.",
+    description:
+      "Creative digital marketing studio visual branding, 3D social carousel layouts, ad campaign key visuals, and typographic systems.",
     deliverables: ["Brand Identity", "3D Artwork", "Social Carousels", "Key Visuals", "Deck Templates"],
   },
   {
@@ -212,7 +214,8 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/cpt/logo.png", caption: "Primary Wordmark & Modern Vector Emblem" },
       { src: "/brand-gallery/cpt/icon.png", caption: "High-Resolution App Launcher Icon" },
     ],
-    description: "Strategic corporate technology consultancy branding, executive identity, vector monogram, and corporate collateral.",
+    description:
+      "Strategic corporate technology consultancy branding, executive identity, vector monogram, and corporate collateral.",
     deliverables: ["Corporate Wordmark", "App Icon", "Letterhead", "Brand Standards", "Digital Assets"],
   },
   {
@@ -233,10 +236,63 @@ export const REAL_BRAND_FOLDERS: BrandFolderData[] = [
       { src: "/brand-gallery/archieve/gv/paper-mockup.png", caption: "Embossed Heavyweight Paper Presentation" },
       { src: "/brand-gallery/archieve/gv/business card mockupjpg.png", caption: "Foil Stamped Business Cards" },
     ],
-    description: "Fintech credit mobility trust marks, instant disbursal iconography, corporate client merchandise, and stationery mockups.",
+    description:
+      "Fintech credit mobility trust marks, instant disbursal iconography, corporate client merchandise, and stationery mockups.",
     deliverables: ["Trust Badges", "Credit Logos", "Cup Merch", "Paper Mockup", "Foil Card Mockup"],
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Dynamic Aspect-Ratio Gallery Image Card                           */
+/* ------------------------------------------------------------------ */
+
+function GalleryImageCard({
+  img,
+  onClick,
+}: {
+  img: { src: string; caption: string };
+  onClick: () => void;
+}) {
+  // true when naturalWidth > naturalHeight (landscape rectangle -> col-span-2)
+  // false when naturalWidth <= naturalHeight (portrait/square -> col-span-1)
+  const [isLandscape, setIsLandscape] = React.useState(false);
+
+  const handleImageLoad = React.useCallback(
+    (e: React.SyntheticEvent<HTMLImageElement>) => {
+      const { naturalWidth, naturalHeight } = e.currentTarget;
+      setIsLandscape(naturalWidth > naturalHeight);
+    },
+    []
+  );
+
+  return (
+    <div
+      onClick={onClick}
+      className={`group relative overflow-hidden rounded-sm bg-white border border-slate-200/70 hover:shadow-lg transition-all duration-300 cursor-pointer flex items-center justify-center ${isLandscape ? "col-span-1 sm:col-span-2" : "col-span-1"
+        }`}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={img.src}
+        alt={img.caption}
+        loading="lazy"
+        onLoad={handleImageLoad}
+        className="block w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+      />
+
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-3 gap-2">
+        <span className="text-white text-xs font-medium line-clamp-2">
+          {img.caption}
+        </span>
+
+        <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-slate-800 shadow-sm shrink-0">
+          View ↗
+        </span>
+      </div>
+    </div>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /*  macOS Folder Icon Component                                       */
@@ -273,7 +329,6 @@ export function MacosFolderIcon({
         }
       }}
     >
-
       {/* Folder Graphic - Three Layer Depth Structure */}
       <div
         className="relative flex items-center justify-center transition-all duration-200 group-hover:-translate-y-1"
@@ -291,7 +346,10 @@ export function MacosFolderIcon({
           <defs>
             <linearGradient
               id={`folder-back-${folder.id}`}
-              x1="0" y1="0" x2="0" y2="1"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
             >
               <stop offset="0%" stopColor="#5bc6fb" />
               <stop offset="35%" stopColor="#258fe8" />
@@ -300,7 +358,10 @@ export function MacosFolderIcon({
 
             <linearGradient
               id={`folder-crease-${folder.id}`}
-              x1="0" y1="0" x2="0" y2="1"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
             >
               <stop offset="0%" stopColor="rgba(8,48,102,0.45)" />
               <stop offset="100%" stopColor="rgba(8,48,102,0)" />
@@ -351,6 +412,7 @@ export function MacosFolderIcon({
             transition: "transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1)",
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={folder.previewImage}
             alt={folder.name}
@@ -368,7 +430,10 @@ export function MacosFolderIcon({
           <defs>
             <linearGradient
               id={`folder-front-${folder.id}`}
-              x1="0" y1="0" x2="0" y2="1"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
             >
               <stop offset="0%" stopColor="#43b2fb" />
               <stop offset="25%" stopColor="#2494ef" />
@@ -401,12 +466,18 @@ export function MacosFolderIcon({
 
           {/* Emboss Details */}
           <line
-            x1="16" y1="56" x2="105" y2="56"
+            x1="16"
+            y1="56"
+            x2="105"
+            y2="56"
             stroke="rgba(0,30,80,0.18)"
             strokeWidth="1"
           />
           <line
-            x1="16" y1="57" x2="105" y2="57"
+            x1="16"
+            y1="57"
+            x2="105"
+            y2="57"
             stroke="rgba(255,255,255,0.25)"
             strokeWidth="1"
           />
@@ -426,7 +497,6 @@ export function MacosFolderIcon({
             }`}
         />
       </div>
-
 
       {/* Folder Name & Details */}
       <div className="mt-1.5 flex flex-col items-center max-w-full">
@@ -469,35 +539,16 @@ export function MacosFolderModal({
   const [iconSize, setIconSize] = React.useState<"compact" | "normal" | "large">("normal");
   const [quickLookIndex, setQuickLookIndex] = React.useState<number | null>(null);
 
-  // Keyboard navigation: Escape to go back / close
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (quickLookIndex !== null) {
-          setQuickLookIndex(null);
-        } else if (activeBrand) {
-          setActiveBrand(null);
-        } else {
-          onClose();
-        }
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, quickLookIndex, activeBrand, onClose]);
-
-  // Lock body scroll when modal is active
-  React.useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
+  useEscapeKey(() => {
+    if (quickLookIndex !== null) {
+      setQuickLookIndex(null);
+    } else if (activeBrand) {
+      setActiveBrand(null);
     } else {
-      document.body.style.overflow = "";
+      onClose();
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  }, isOpen);
+  useBodyScrollLock(isOpen);
 
   if (!isOpen || !mounted) return null;
 
@@ -510,14 +561,22 @@ export function MacosFolderModal({
     return matchesSearch;
   });
 
+  // Preserve original index so Quick Look opens the exact image even when search-filtered
+  const filteredBrandImages = activeBrand
+    ? activeBrand.galleryImages
+      .map((img, originalIndex) => ({ ...img, originalIndex }))
+      .filter(
+        (img) =>
+          searchQuery.trim() === "" ||
+          img.caption.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
+
   const modalContent = (
     <div
-      className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-5 overflow-hidden transition-opacity duration-300 animate-fadeIn"
+      className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-2 sm:p-5 overflow-hidden transition-opacity duration-300 animate-fade-in"
       style={{
-        /* macOS Wallpaper Style Background Gradient */
-        background: '#00000069'
-        // background:
-        //   "linear-gradient(180deg, #184ea8 0%, #1a57ba 40%, #4684e2 75%, #d89f78 95%, #e6a778 100%)",
+        background: "#00000069",
       }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -531,28 +590,6 @@ export function MacosFolderModal({
             "radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.25) 0%, transparent 70%), linear-gradient(135deg, rgba(88, 142, 245, 0.4) 0%, rgba(245, 120, 160, 0.15) 50%, rgba(255, 180, 80, 0.2) 100%)",
         }}
       />
-
-      {/* macOS Top Menu Bar */}
-      {/* <header className="absolute top-0 left-0 right-0 h-7 bg-white/20 backdrop-blur-xl border-b border-white/10 text-white/95 text-[13px] px-4 flex items-center justify-between select-none z-10 shadow-xs">
-        <div className="flex items-center gap-4 font-normal">
-          <span className="font-semibold text-sm"></span>
-          <span className="font-semibold text-white">Finder</span>
-          <span className="hidden md:inline hover:text-white cursor-pointer">File</span>
-          <span className="hidden md:inline hover:text-white cursor-pointer">Edit</span>
-          <span className="hidden md:inline hover:text-white cursor-pointer">View</span>
-          <span className="hidden md:inline hover:text-white cursor-pointer">Go</span>
-          <span className="hidden md:inline hover:text-white cursor-pointer">Window</span>
-          <span className="hidden md:inline hover:text-white cursor-pointer">Help</span>
-        </div>
-        <div className="flex items-center gap-3 text-xs text-white/85 font-medium">
-          <span className="hidden sm:inline">Brand Identity System</span>
-          <span className="text-white/40">|</span>
-          <span>Macintosh HD</span>
-          <span>
-            {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-          </span>
-        </div>
-      </header> */}
 
       {/* Main macOS Finder Window */}
       <div
@@ -588,7 +625,11 @@ export function MacosFolderModal({
             <button
               className="w-3.5 h-3.5 rounded-full bg-[#27c93f] border border-[#1aab29] flex items-center justify-center text-[9px] text-[#006500] opacity-90 hover:opacity-100 group transition-all cursor-pointer shadow-2xs"
               aria-label="Zoom"
-              onClick={() => setIconSize((s) => (s === "normal" ? "large" : s === "large" ? "compact" : "normal"))}
+              onClick={() =>
+                setIconSize((s) =>
+                  s === "normal" ? "large" : s === "large" ? "compact" : "normal"
+                )
+              }
               title="Toggle size"
             >
               <span className="opacity-0 group-hover:opacity-100 font-bold leading-none">+</span>
@@ -600,7 +641,10 @@ export function MacosFolderModal({
             {activeBrand ? (
               <button
                 type="button"
-                onClick={() => setActiveBrand(null)}
+                onClick={() => {
+                  setActiveBrand(null);
+                  setSearchQuery("");
+                }}
                 className="flex items-center gap-1 px-2 py-1 rounded bg-slate-200/80 hover:bg-slate-300 text-slate-800 font-medium text-xs transition-colors cursor-pointer shadow-2xs"
               >
                 <span>‹</span>
@@ -613,7 +657,10 @@ export function MacosFolderModal({
             <span
               className={`cursor-pointer hover:underline ${activeBrand ? "text-slate-500" : "text-slate-900 font-semibold"
                 }`}
-              onClick={() => setActiveBrand(null)}
+              onClick={() => {
+                setActiveBrand(null);
+                setSearchQuery("");
+              }}
             >
               {title}
             </span>
@@ -690,87 +737,17 @@ export function MacosFolderModal({
           </div>
         </div>
 
-        {/* Window Body: Sidebar + Content */}
+        {/* Window Body */}
         <div className="flex-1 flex overflow-hidden">
-          {/* macOS Finder Left Sidebar */}
-          {/* <aside className="w-44 sm:w-52 bg-[#f4f4f7]/80 border-r border-black/[0.06] p-3 flex flex-col justify-between select-none text-xs text-slate-700 hidden sm:flex shrink-0">
-            <div>
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2">
-                Brand Categories
-              </span>
-              <ul className="mt-1 space-y-0.5">
-                {categories.map((item) => (
-                  <li key={item.val}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setActiveCategory(item.val);
-                        setActiveBrand(null);
-                      }}
-                      className={`w-full flex items-center justify-between px-2 py-1.5 rounded-md transition-colors cursor-pointer ${activeCategory === item.val && !activeBrand
-                        ? "bg-[#007aff] text-white font-medium"
-                        : "hover:bg-black/[0.05] text-slate-700"
-                        }`}
-                    >
-                      <span className="flex items-center gap-2 truncate">
-                        <span>{item.icon}</span>
-                        <span className="truncate">{item.label}</span>
-                      </span>
-                      <span
-                        className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeCategory === item.val && !activeBrand
-                          ? "bg-white/25 text-white"
-                          : "bg-slate-200 text-slate-500"
-                          }`}
-                      >
-                        {item.count}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-5">
-                <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2">
-                  System Tags
-                </span>
-                <div className="mt-1.5 px-2 flex flex-col gap-1.5">
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                    <span>Live Brands</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                    <span>Luxury Retail</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <span className="w-2.5 h-2.5 rounded-full bg-sky-500" />
-                    <span>Clinical Safety</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
-                    <span>Fintech & Web3</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-2.5 rounded-lg bg-white/70 border border-slate-200 text-[11px] text-slate-500">
-              <strong className="text-slate-800 block mb-0.5">Interaction Hint:</strong>
-              Click any folder to scroll through its full image gallery. Press <kbd className="px-1 py-0.5 bg-slate-100 rounded border border-slate-300 text-[10px]">Esc</kbd> to exit.
-            </div>
-          </aside> */}
-
-          {/* Main Stage */}
           <main className="flex-1 flex flex-col overflow-hidden bg-white/75">
             {activeBrand ? (
               /* ========================================================= */
-              /* Brand Folder Page: Scrollable Brand Images Gallery View  */
+              /* Brand Folder Page: Dynamic Aspect-Ratio Grid Gallery View */
               /* ========================================================= */
-              <div className="flex-1 flex flex-col overflow-hidden animate-fadeIn">
+              <div className="flex-1 flex flex-col overflow-hidden animate-fade-in">
                 {/* Brand Folder Info Header */}
                 <div className="p-4 sm:p-5 border-b border-slate-200 bg-white/90 backdrop-blur-md flex flex-col gap-2 shrink-0">
                   <div className="flex items-center justify-between">
-
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg overflow-hidden border border-slate-200 shadow-2xs shrink-0">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -784,85 +761,44 @@ export function MacosFolderModal({
                         <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
                           {activeBrand.name}
                         </h2>
-                        {/* <span className="text-xs text-slate-500">
-                          {activeBrand.category} · {activeBrand.galleryImages.length} assets · {activeBrand.size}
-                        </span> */}
                       </div>
                     </div>
                     <button
                       type="button"
-                      onClick={() => setActiveBrand(null)}
+                      onClick={() => {
+                        setActiveBrand(null);
+                        setSearchQuery("");
+                      }}
                       className="px-3 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 border border-slate-200"
                     >
                       <span className="text-xs">‹ Back to Folders</span>
                     </button>
                   </div>
-
-                  {/* <p className="text-xs text-slate-600 leading-relaxed max-w-3xl pt-1">
-                    {activeBrand.description}
-                  </p> */}
-
-                  {/* <div className="flex flex-wrap gap-1.5 pt-1">
-                    {activeBrand.deliverables.map((item) => (
-                      <span
-                        key={item}
-                        className="text-[11px] px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-medium border border-slate-200"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div> */}
                 </div>
 
-                {/* SCROLLABLE VIEW: Images of the selected brand */}
-
-                <div className="flex-1 p-2 sm:p-2 overflow-y-auto">
-
-                  {/* Masonry / Free-flow Gallery */}
-                  <div className="columns-1 sm:columns-2 lg:columns-2 gap-2 space-y-2">
-
-                    {activeBrand.galleryImages
-                      .filter(
-                        (img) =>
-                          searchQuery.trim() === "" ||
-                          img.caption.toLowerCase().includes(searchQuery.toLowerCase())
-                      )
-                      .map((img, idx) => (
-                        <div
-                          key={img.src + idx}
-                          onClick={() => setQuickLookIndex(idx)}
-                          className="group relative mb-5 break-inside-avoid overflow-hidden rounded-sm bg-white hover:shadow-lg transition-all duration-300 cursor-pointer"
-                        >
-                          {/* Image */}
-                          <img
-                            src={img.src}
-                            alt={img.caption}
-                            loading="lazy"
-                            className="block w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500"
-                          />
-
-                          {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-3">
-                            <span className="text-white text-xs font-medium">
-                              {img.caption}
-                            </span>
-
-                            <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-slate-800 shadow-sm shrink-0">
-                              View ↗
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-
+                {/* SCROLLABLE VIEW: Dynamic Grid (col-span-2 for landscape, col-span-1 for portrait) */}
+                <div className="flex-1 p-3 sm:p-4 overflow-y-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 grid-flow-dense gap-3">
+                    {filteredBrandImages.map((img) => (
+                      <GalleryImageCard
+                        key={img.src + img.originalIndex}
+                        img={img}
+                        onClick={() => setQuickLookIndex(img.originalIndex)}
+                      />
+                    ))}
                   </div>
+
+                  {filteredBrandImages.length === 0 && (
+                    <div className="py-16 text-center text-slate-400 text-xs">
+                      No assets matching &ldquo;{searchQuery}&rdquo;
+                    </div>
+                  )}
 
                   {/* Gallery Footer */}
                   <div className="py-6 text-center text-xs text-slate-400">
                     End of {activeBrand.name} gallery · {activeBrand.galleryImages.length} assets
                   </div>
-
                 </div>
-
               </div>
             ) : viewMode === "grid" ? (
               /* ========================================================= */
@@ -886,10 +822,12 @@ export function MacosFolderModal({
                       onClick={() => {
                         setSelectedFolder(folder);
                         setActiveBrand(folder);
+                        setSearchQuery("");
                       }}
                       onDoubleClick={() => {
                         setSelectedFolder(folder);
                         setActiveBrand(folder);
+                        setSearchQuery("");
                       }}
                     />
                   ))}
@@ -928,6 +866,7 @@ export function MacosFolderModal({
                           onClick={() => {
                             setSelectedFolder(folder);
                             setActiveBrand(folder);
+                            setSearchQuery("");
                           }}
                           className={`border-b border-slate-100 cursor-pointer transition-colors ${isSel
                             ? "bg-[#007aff] text-white"
@@ -964,7 +903,7 @@ export function MacosFolderModal({
         <footer className="h-6 bg-[#ebebef] border-t border-slate-200/80 px-4 flex items-center justify-between text-[11px] text-slate-500 select-none shrink-0">
           <span>
             {activeBrand
-              ? `${activeBrand.galleryImages.length} items in ${activeBrand.name}`
+              ? `${filteredBrandImages.length} items in ${activeBrand.name}`
               : `${filteredFolders.length} folders available`}
           </span>
           <span>142.8 GB available on Macintosh HD</span>
@@ -974,7 +913,7 @@ export function MacosFolderModal({
       {/* Lightbox / Quick Look Overlay when clicking an image inside a brand */}
       {activeBrand && quickLookIndex !== null && (
         <div
-          className="fixed inset-0 z-[100000] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn"
+          className="fixed inset-0 z-[var(--z-modal)] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setQuickLookIndex(null)}
         >
           <div

@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import PageTransition from "@/components/page-transition";
 import PortfolioTicket from "@/components/portfolio/PortfolioTicket";
 import CaseStudyLayout from "@/components/case-study-layout";
-import ProjectCaseStudyContent, {
-  type RelatedProjectItem,
-} from "@/components/ProjectCaseStudyContent";
+import ProjectCaseStudyContent from "@/components/ProjectCaseStudyContent";
 import type { SectionNavItem } from "@/components/ProjectSectionNavigation";
+import RELATED_PROJECTS from "@/lib/related-projects";
 
 export const metadata: Metadata = {
   title: "Game Landing Pages & Campaign Experiences — Sunil Kumar Reddy",
@@ -51,30 +49,6 @@ const CAMPAIGN_EXPERIENCES = [
   },
 ];
 
-const RELATED_PROJECTS: RelatedProjectItem[] = [
-  {
-    title: "TurboPaisa",
-    href: "/work/turbopaisa",
-    thumbnailSrc:
-      "/figma/turbopaisa/screens/home-dashboard/turbopaisa-home-rewards-dashboard-default-01.jpg",
-    thumbnailAlt: "TurboPaisa mobile app home screen",
-  },
-  {
-    title: "CredBuddha",
-    href: "/work/credbuddha",
-    thumbnailSrc:
-      "/figma/credbuddha/screens/loan-discovery/credbuddha-loan-discovery-dashboard-feed-default-01.jpg",
-    thumbnailAlt: "CredBuddha mobile app home screen",
-  },
-  {
-    title: "Core Volt Matrix",
-    href: "/work/cvm-hrm",
-    thumbnailSrc:
-      "/figma/cvm-hrms/screens/dashboard/cvm-hrms-dashboard-overview-default-01.jpg",
-    thumbnailAlt: "Core Volt Matrix HRMS dashboard",
-  },
-];
-
 const NAV_ITEMS: SectionNavItem[] = [
   { id: "overview", label: "Overview" },
   { id: "highlights", label: "Highlights" },
@@ -86,8 +60,7 @@ const NAV_ITEMS: SectionNavItem[] = [
 
 export default function GameCampaignsPage() {
   return (
-    <PageTransition>
-      <CaseStudyLayout
+    <CaseStudyLayout
         title="Game & Campaign Landing Pages"
         summary="A dedicated creative development collection exploring high-impact game landing pages, interactive promotional microsites, and motion-driven web experiences."
         categoryTags={["Creative Dev", "WebGL & Shaders", "2024–2026"]}
@@ -158,7 +131,9 @@ export default function GameCampaignsPage() {
               "Designing touch-first fallbacks and respecting reduced-motion preferences ensures that the magic translates across all screen sizes.",
             ],
           }}
-          relatedProjects={RELATED_PROJECTS}
+          relatedProjects={RELATED_PROJECTS.filter(
+            (project) => project.href !== "/work/game-campaigns",
+          )}
         />
 
         {/* Extended Cards for the 5 Capabilities inside the Solution area */}
@@ -193,6 +168,5 @@ export default function GameCampaignsPage() {
           </div>
         </div>
       </CaseStudyLayout>
-    </PageTransition>
   );
 }
