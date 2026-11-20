@@ -6,7 +6,7 @@ import {
   DEFAULT_ICONS,
   type FolderIcon,
 } from "@/components/ui/icon-folder";
-import { MacosFolderModal } from "@/components/ui/macos-folder-modal";
+import { MacosFolderModal } from "@/components/ui/MacosFolderModal";
 
 type BrandFolderPreviewProps = {
   icons?: FolderIcon[];
@@ -52,7 +52,7 @@ export function BrandFolderPreview({
         {/* macOS Finder Pill Overlay */}
         {/* <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 text-[11px] font-medium text-slate-700 shadow-xs opacity-90 group-hover:opacity-100 group-hover:scale-105 group-hover:border-sky-500/40 transition-all">
           <span className="text-xs">📁</span>
-          <span>Open Brand Archive</span>
+          <span>Open Brand Archive </span>
           <span className="text-[10px] text-slate-400">↗</span>
         </div> */}
 

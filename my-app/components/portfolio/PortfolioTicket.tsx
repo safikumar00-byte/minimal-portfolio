@@ -8,6 +8,7 @@ import AdmitOneTicket, {
   TICKET_TEXTURE,
   TICKET_GRADIENT,
 } from "@/components/ui/admit-one-ticket";
+import useIsClient from "@/hooks/useIsClient";
 
 export type PortfolioTicketProps = {
   presenter?: string;
@@ -34,28 +35,23 @@ export const PORTFOLIO_TICKET_DEFAULTS = {
   href: "/work/game-campaigns",
 };
 
-const emptySubscribe = () => () => {};
-function useIsClient() {
-  return React.useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  );
-}
-
-export default function PortfolioTicket({
-  presenter = PORTFOLIO_TICKET_DEFAULTS.presenter,
-  name = PORTFOLIO_TICKET_DEFAULTS.name,
-  event = PORTFOLIO_TICKET_DEFAULTS.event,
-  venue = PORTFOLIO_TICKET_DEFAULTS.venue,
-  dates = PORTFOLIO_TICKET_DEFAULTS.dates,
-  stubText = PORTFOLIO_TICKET_DEFAULTS.stubText,
-  watermark = PORTFOLIO_TICKET_DEFAULTS.watermark,
-  href = PORTFOLIO_TICKET_DEFAULTS.href,
-  width: fixedWidth,
-  className = "",
-  tilt = true,
-}: PortfolioTicketProps) {
+export default function PortfolioTicket(props: PortfolioTicketProps) {
+  const {
+    presenter = PORTFOLIO_TICKET_DEFAULTS.presenter,
+    name = PORTFOLIO_TICKET_DEFAULTS.name,
+    event = PORTFOLIO_TICKET_DEFAULTS.event,
+    venue = PORTFOLIO_TICKET_DEFAULTS.venue,
+    dates = PORTFOLIO_TICKET_DEFAULTS.dates,
+    stubText = PORTFOLIO_TICKET_DEFAULTS.stubText,
+    watermark = PORTFOLIO_TICKET_DEFAULTS.watermark,
+    href,
+    width: fixedWidth,
+    className = "",
+    tilt = true,
+  } = props;
+  const ticketHref = Object.prototype.hasOwnProperty.call(props, "href")
+    ? href
+    : PORTFOLIO_TICKET_DEFAULTS.href;
   const isClient = useIsClient();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [measuredWidth, setMeasuredWidth] = React.useState<number>(360);
@@ -109,10 +105,10 @@ export default function PortfolioTicket({
     </div>
   );
 
-  if (href) {
+  if (ticketHref) {
     return (
       <TransitionLink
-        href={href}
+        href={ticketHref}
         className="portfolio-ticket-anchor group block w-full outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 focus-visible:ring-offset-4 rounded-xl transition-transform duration-200"
         aria-label={`${name.replace(/\n/g, " ")} — ${presenter} (${venue})`}
       >
