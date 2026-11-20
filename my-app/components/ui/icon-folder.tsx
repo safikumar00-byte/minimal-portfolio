@@ -44,7 +44,7 @@ export const DEFAULT_ICONS: FolderIcon[] = [
     node: (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/brand-gallery/urban-sprouts/icon.svg"
+        src="/brand-gallery/urban-sprouts/urban-sprouts-logo-symbol-primary-duotone-01.svg"
         alt="Urban Sprouts"
         className="w-[100%] h-[100%] object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
       />
@@ -56,7 +56,7 @@ export const DEFAULT_ICONS: FolderIcon[] = [
     node: (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/brand-gallery/lunex/icon.svg"
+        src="/brand-gallery/lunex/lunex-logo-symbol-vector-01.svg"
         alt="Lunex"
         className="w-[100%] h-[100%] object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]"
       />
@@ -68,7 +68,7 @@ export const DEFAULT_ICONS: FolderIcon[] = [
     node: (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/brand-gallery/volt-matrix/c39dc9235525379.68d9375e00cde.jpg"
+        src="/brand-gallery/volt-matrix/volt-matrix-logo-primary-mark-electric-green-01.jpg"
         alt="Volt Matrix"
         className="w-[100%] h-[100%] object-cover rounded-[16px] shadow-sm"
       />
@@ -80,7 +80,7 @@ export const DEFAULT_ICONS: FolderIcon[] = [
     node: (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/brand-gallery/moon-safe/mockup kit.jpg"
+        src="/brand-gallery/moon-safe/moon-safe-mockup-complete-identity-suite-kit-01.jpg"
         alt="Moon Safe"
         className="w-[100%] h-[100%] object-cover rounded-[16px] shadow-sm"
       />
@@ -92,20 +92,20 @@ export const DEFAULT_ICONS: FolderIcon[] = [
     node: (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/brand-gallery/sfx-forex/icon.png"
+        src="/brand-gallery/sfx-forex/sfx-forex-logo-symbol-launcher-transparent-01.png"
         alt="SFX Forex"
         className="w-[100%] h-[100%] object-contain"
       />
     ),
   },
   {
-    label: "Bug Bloons",
-    background: "linear-gradient(135deg, #ea580c, #9a3412)",
+    label: "Bug Blooms",
+    background: "linear-gradient(135deg, #015758, #00b67d)",
     node: (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/brand-gallery/bug-bloons/1.jpg"
-        alt="Bug Bloons"
+        src="/brand-gallery/bug-bloons/bug-bloons-application-highway-billboard-mockup-01.jpg"
+        alt="Bug Blooms"
         className="w-[100%] h-[100%] object-cover rounded-[16px] shadow-sm"
       />
     ),
